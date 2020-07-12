@@ -1,0 +1,470 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: CF7 Database\n"
+"POT-Creation-Date: 2020-07-13 02:37+0430\n"
+"PO-Revision-Date: 2020-07-13 02:16+0430\n"
+"Last-Translator: Amirhosseinhpv <amirhossein@hpv.im>\n"
+"Language-Team: Amirhosseinhpv <amirhossein@hpv.im>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: pepro-cf7-db.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#. Plugin Name of the plugin/theme
+#: pepro-cf7-db.php:77
+msgid "CF7 Database"
+msgstr ""
+
+#: pepro-cf7-db.php:78
+#, php-format
+msgid "%2$s ver. %1$s"
+msgstr ""
+
+#: pepro-cf7-db.php:123 pepro-cf7-db.php:124
+msgid "Support"
+msgstr ""
+
+#: pepro-cf7-db.php:137
+msgid "Settings"
+msgstr ""
+
+#: pepro-cf7-db.php:196
+#, php-format
+msgctxt "footer-copyright"
+msgid "Thanks for using %s products"
+msgstr ""
+
+#: pepro-cf7-db.php:196
+msgid "Pepro Dev"
+msgstr ""
+
+#: pepro-cf7-db.php:201
+#, php-format
+msgctxt "footer-copyright"
+msgid "%s — Version %s"
+msgstr ""
+
+#: pepro-cf7-db.php:211
+msgid "Unauthorized Access!"
+msgstr ""
+
+#: pepro-cf7-db.php:221
+#, php-format
+msgid "Submition ID %s Successfully Deleted."
+msgstr ""
+
+#: pepro-cf7-db.php:223
+#, php-format
+msgid "Error Deleting Submition ID %s."
+msgstr ""
+
+#: pepro-cf7-db.php:233
+msgid "Database Successfully Cleared."
+msgstr ""
+
+#: pepro-cf7-db.php:235
+msgid "Error Clearing Database."
+msgstr ""
+
+#: pepro-cf7-db.php:254
+msgid "List of CF7 Submitions"
+msgstr ""
+
+#: pepro-cf7-db.php:255
+msgid "Setting"
+msgstr ""
+
+#: pepro-cf7-db.php:277
+msgctxt "setting-general"
+msgid "Settings saved successfully."
+msgstr ""
+
+#: pepro-cf7-db.php:280
+msgctxt "setting-general"
+msgid "Clear Database Data on Unistall"
+msgstr ""
+
+#: pepro-cf7-db.php:280
+msgctxt "settings-general"
+msgid "Yes"
+msgstr ""
+
+#: pepro-cf7-db.php:280
+msgctxt "settings-general"
+msgid "No"
+msgstr ""
+
+#: pepro-cf7-db.php:282
+msgid "Save setting"
+msgstr ""
+
+#: pepro-cf7-db.php:283
+msgctxt "setting-general"
+msgid "Empty Database"
+msgstr ""
+
+#: pepro-cf7-db.php:296
+msgctxt "wc-setting-js"
+msgid "Select image file"
+msgstr ""
+
+#: pepro-cf7-db.php:297
+msgctxt "wc-setting-js"
+msgid "Use this image"
+msgstr ""
+
+#: pepro-cf7-db.php:298
+msgctxt "wc-setting-js"
+msgid "Clear"
+msgstr ""
+
+#: pepro-cf7-db.php:299
+msgctxt "wc-setting-js"
+msgid "Current preview"
+msgstr ""
+
+#: pepro-cf7-db.php:300
+msgctxt "wc-setting-js"
+msgid "Select image"
+msgstr ""
+
+#: pepro-cf7-db.php:301
+msgctxt "js-string"
+msgid "Submit"
+msgstr ""
+
+#: pepro-cf7-db.php:302
+msgctxt "js-string"
+msgid "Today"
+msgstr ""
+
+#: pepro-cf7-db.php:303
+msgctxt "wc-setting-js"
+msgid "Error"
+msgstr ""
+
+#: pepro-cf7-db.php:304
+msgctxt "wc-setting-js"
+msgid "Canceled"
+msgstr ""
+
+#: pepro-cf7-db.php:305
+msgctxt "wc-setting-js"
+msgid "Confirm"
+msgstr ""
+
+#: pepro-cf7-db.php:306
+msgctxt "wc-setting-js"
+msgid "Success"
+msgstr ""
+
+#: pepro-cf7-db.php:307
+msgctxt "wc-setting-js"
+msgid "Submit"
+msgstr ""
+
+#: pepro-cf7-db.php:308
+msgctxt "wc-setting-js"
+msgid "Okay"
+msgstr ""
+
+#: pepro-cf7-db.php:309
+msgctxt "wc-setting-js"
+msgid "Yes"
+msgstr ""
+
+#: pepro-cf7-db.php:310
+msgctxt "wc-setting-js"
+msgid "No"
+msgstr ""
+
+#: pepro-cf7-db.php:311
+msgctxt "wc-setting-js"
+msgid "Cancel"
+msgstr ""
+
+#: pepro-cf7-db.php:312
+msgctxt "wc-setting-js"
+msgid "Send to all"
+msgstr ""
+
+#: pepro-cf7-db.php:313
+msgctxt "wc-setting-js"
+msgid "Close"
+msgstr ""
+
+#: pepro-cf7-db.php:314
+msgctxt "wc-setting-js"
+msgid "Delete Submition"
+msgstr ""
+
+#: pepro-cf7-db.php:315
+#, php-format
+msgctxt "wc-setting-js"
+msgid ""
+"Are you sure you want to delete submition ID %s ? This cannot be undone."
+msgstr ""
+
+#: pepro-cf7-db.php:316
+msgctxt "wc-setting-js"
+msgid "Are you sure you want to clear all data from database?"
+msgstr ""
+
+#: pepro-cf7-db.php:317
+msgctxt "wc-setting-js"
+msgid "Clear Database"
+msgstr ""
+
+#: pepro-cf7-db.php:319
+#, php-format
+msgctxt "wc-setting-js"
+msgid "Contact Form 7 Database Exported via %s"
+msgstr ""
+
+#: pepro-cf7-db.php:320
+msgctxt "wc-setting-js"
+msgid "CF7 Database Export"
+msgstr ""
+
+#: pepro-cf7-db.php:321
+#, php-format
+msgctxt "wc-setting-js"
+msgid "Exported at %s @ %s"
+msgstr ""
+
+#: pepro-cf7-db.php:323
+#, php-format
+msgctxt "wc-setting-js"
+msgid ""
+"Exported via %s — Export Date: %s @ %s — Developed by Pepro Dev Team "
+"( https://pepro.dev/ )"
+msgstr ""
+
+#: pepro-cf7-db.php:325
+msgctxt "data-table"
+msgid "No data available in table"
+msgstr ""
+
+#: pepro-cf7-db.php:326
+msgctxt "data-table"
+msgid "Showing _START_ to _END_ of _TOTAL_ entries"
+msgstr ""
+
+#: pepro-cf7-db.php:327
+msgctxt "data-table"
+msgid "Showing 0 to 0 of 0 entries"
+msgstr ""
+
+#: pepro-cf7-db.php:328
+msgctxt "data-table"
+msgid "(filtered from _MAX_ total entries)"
+msgstr ""
+
+#: pepro-cf7-db.php:329
+msgctxt "data-table"
+msgid "Show _MENU_ entries"
+msgstr ""
+
+#: pepro-cf7-db.php:330
+msgctxt "data-table"
+msgid "Loading..."
+msgstr ""
+
+#: pepro-cf7-db.php:331
+msgctxt "data-table"
+msgid "Processing..."
+msgstr ""
+
+#: pepro-cf7-db.php:332
+msgctxt "data-table"
+msgid "Search:"
+msgstr ""
+
+#: pepro-cf7-db.php:333
+msgctxt "data-table"
+msgid "No matching records found"
+msgstr ""
+
+#: pepro-cf7-db.php:334
+msgctxt "data-table"
+msgid "First"
+msgstr ""
+
+#: pepro-cf7-db.php:335
+msgctxt "data-table"
+msgid "Last"
+msgstr ""
+
+#: pepro-cf7-db.php:336
+msgctxt "data-table"
+msgid "Next"
+msgstr ""
+
+#: pepro-cf7-db.php:337
+msgctxt "data-table"
+msgid "Previous"
+msgstr ""
+
+#: pepro-cf7-db.php:338
+msgctxt "data-table"
+msgid ": activate to sort column ascending"
+msgstr ""
+
+#: pepro-cf7-db.php:339
+msgctxt "data-table"
+msgid ": activate to sort column descending"
+msgstr ""
+
+#: pepro-cf7-db.php:340
+msgctxt "data-table"
+msgid "Copy to clipboard"
+msgstr ""
+
+#: pepro-cf7-db.php:341
+msgctxt "data-table"
+msgid "Print"
+msgstr ""
+
+#: pepro-cf7-db.php:342
+msgctxt "data-table"
+msgid "Export CSV"
+msgstr ""
+
+#: pepro-cf7-db.php:343
+msgctxt "data-table"
+msgid "Export Excel"
+msgstr ""
+
+#: pepro-cf7-db.php:344
+msgctxt "data-table"
+msgid "Export PDF"
+msgstr ""
+
+#: pepro-cf7-db.php:412
+msgid "Entered CF7 is not valid, Go back and select another Contact form"
+msgstr ""
+
+#: pepro-cf7-db.php:417
+#, php-format
+msgid "%s → Contact Form \"%s\""
+msgstr ""
+
+#: pepro-cf7-db.php:425
+msgid "Items per page"
+msgstr ""
+
+#: pepro-cf7-db.php:426 pepro-cf7-db.php:427 pepro-cf7-db.php:428
+#: pepro-cf7-db.php:429 pepro-cf7-db.php:430 pepro-cf7-db.php:431
+#: pepro-cf7-db.php:432 pepro-cf7-db.php:433 pepro-cf7-db.php:434
+#: pepro-cf7-db.php:435 pepro-cf7-db.php:436
+#, php-format
+msgctxt "items_per_page"
+msgid "Show %s items per page"
+msgstr ""
+
+#: pepro-cf7-db.php:438
+#, php-format
+msgid "Show your only saved submition"
+msgid_plural "Show all %s items at once"
+msgstr[0] ""
+msgstr[1] ""
+
+#: pepro-cf7-db.php:444
+msgid "Delete All Submitions of Current Contact form"
+msgstr ""
+
+#: pepro-cf7-db.php:445
+msgid "Edit Current Contact form"
+msgstr ""
+
+#: pepro-cf7-db.php:446
+msgid "Go back and select another Contact form"
+msgstr ""
+
+#: pepro-cf7-db.php:457
+msgid "ID"
+msgstr ""
+
+#: pepro-cf7-db.php:458
+msgid "Date Created"
+msgstr ""
+
+#: pepro-cf7-db.php:459
+msgid "Subject"
+msgstr ""
+
+#: pepro-cf7-db.php:460
+msgid "From"
+msgstr ""
+
+#: pepro-cf7-db.php:474
+msgid "Action"
+msgstr ""
+
+#: pepro-cf7-db.php:477
+#, php-format
+msgid "Your very first saved submition is showing below"
+msgid_plural "%s Saved Submitions found"
+msgstr[0] ""
+msgstr[1] ""
+
+#: pepro-cf7-db.php:507
+msgid "Delete this specific submition"
+msgstr ""
+
+#: pepro-cf7-db.php:529
+msgid "< Previous"
+msgstr ""
+
+#: pepro-cf7-db.php:530
+msgid "Next >"
+msgstr ""
+
+#: pepro-cf7-db.php:541
+msgid "Error Reading Database!"
+msgstr ""
+
+#: pepro-cf7-db.php:542
+msgid "It seems there's nothing to show."
+msgstr ""
+
+#: pepro-cf7-db.php:701
+#, php-format
+msgctxt "setting-page"
+msgid "Enter %s"
+msgstr ""
+
+#: pepro-cf7-db.php:711
+#, php-format
+msgctxt "setting-page"
+msgid "Choose %s"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://pepro.dev/cf7-database/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Save Contact From 7 Submitions into database and allows you to export saved "
+"data as CSV, Excel Spreadsheet and ..."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Pepro Dev. Group"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://pepro.dev/"
+msgstr ""

@@ -1,0 +1,507 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: CF7 Database\n"
+"POT-Creation-Date: 2020-07-13 02:59+0430\n"
+"PO-Revision-Date: 2020-07-13 03:09+0430\n"
+"Last-Translator: Amirhosseinhpv <amirhossein@hpv.im>\n"
+"Language-Team: Amirhosseinhpv <amirhossein@hpv.im>\n"
+"Language: fa_IR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n==0 || n==1);\n"
+"X-Generator: Poedit 2.2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: pepro-cf7-db.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#. Plugin Name of the plugin/theme
+#: pepro-cf7-db.php:78
+msgid "CF7 Database"
+msgstr "دیتابیس فرم تماس 7"
+
+#: pepro-cf7-db.php:79
+#, php-format
+msgid "%2$s ver. %1$s"
+msgstr "%2$s نسخه %1$s"
+
+#: pepro-cf7-db.php:124 pepro-cf7-db.php:125
+msgid "Support"
+msgstr "پشتیبانی این محصول"
+
+#: pepro-cf7-db.php:138
+msgid "Settings"
+msgstr "تنظیمات"
+
+#: pepro-cf7-db.php:139
+msgid "Submitions"
+msgstr "لیست داده های ثبت شده"
+
+#: pepro-cf7-db.php:198
+#, php-format
+msgctxt "footer-copyright"
+msgid "Thanks for using %s products"
+msgstr "بابت استفاده از محصولات %s سپاسگزاریم"
+
+#: pepro-cf7-db.php:198
+msgid "Pepro Dev"
+msgstr "تیم برنامه ‏نویسی پپرو"
+
+#: pepro-cf7-db.php:203
+#, php-format
+msgctxt "footer-copyright"
+msgid "%s — Version %s"
+msgstr "%s — نسخه %s"
+
+#: pepro-cf7-db.php:213
+msgid "Unauthorized Access!"
+msgstr "شما دسترسی لازم را ندارید !"
+
+#: pepro-cf7-db.php:223
+#, php-format
+msgid "Submition ID %s Successfully Deleted."
+msgstr "داده ثبتی به شماره %s با موفقیت پاک شد."
+
+#: pepro-cf7-db.php:225
+#, php-format
+msgid "Error Deleting Submition ID %s."
+msgstr "متاسفانه خطایی در حذف داده ثبتی به شماره %s رخ داد."
+
+#: pepro-cf7-db.php:236
+#, php-format
+msgid "All data regarding Contact form %s (ID %s) were Successfully Deleted."
+msgstr "داده های ثبتی مربوط به فرم تماس %s ( شناسه %s ) با موفقیت پاک شدند."
+
+#: pepro-cf7-db.php:238
+#, php-format
+msgid "Error Deleting Contact form %s (ID %s) data from database."
+msgstr "خطایی در حذف داده های مربوط به فرم تماس %s ( شناسه %s ) رخ داد."
+
+#: pepro-cf7-db.php:248
+msgid "Database Successfully Cleared."
+msgstr "دیتابیس با موفقیت پاکسازی شد."
+
+#: pepro-cf7-db.php:250
+msgid "Error Clearing Database."
+msgstr "خطایی در پاکسازی دیتابیس داده رخ داد."
+
+#: pepro-cf7-db.php:269
+msgid "List of CF7 Submitions"
+msgstr "داده های فرم تماس 7"
+
+#: pepro-cf7-db.php:270
+msgid "Setting"
+msgstr "تنظیمات"
+
+#: pepro-cf7-db.php:292
+msgctxt "setting-general"
+msgid "Settings saved successfully."
+msgstr "تنظیمات با موفقیت ثبت گردیدند."
+
+#: pepro-cf7-db.php:295
+msgctxt "setting-general"
+msgid "Clear Database Data on Unistall"
+msgstr "پاکسازی دیتابیس هنگام حذف افزونه"
+
+#: pepro-cf7-db.php:295
+msgctxt "settings-general"
+msgid "Yes"
+msgstr "بله"
+
+#: pepro-cf7-db.php:295
+msgctxt "settings-general"
+msgid "No"
+msgstr "خیر"
+
+#: pepro-cf7-db.php:297
+msgid "Save setting"
+msgstr "ذخیره تنظیمات"
+
+#: pepro-cf7-db.php:298
+msgctxt "setting-general"
+msgid "Empty Database"
+msgstr "پاکسازی دیتابیس"
+
+#: pepro-cf7-db.php:311
+msgctxt "wc-setting-js"
+msgid "Select image file"
+msgstr "انتخاب فایل عکس"
+
+#: pepro-cf7-db.php:312
+msgctxt "wc-setting-js"
+msgid "Use this image"
+msgstr "استفاده از این عکس"
+
+#: pepro-cf7-db.php:313
+msgctxt "wc-setting-js"
+msgid "Clear"
+msgstr "پاک کردن"
+
+#: pepro-cf7-db.php:314
+msgctxt "wc-setting-js"
+msgid "Current preview"
+msgstr "پیش نمایش فعلی"
+
+#: pepro-cf7-db.php:315
+msgctxt "wc-setting-js"
+msgid "Select image"
+msgstr "انتخاب عکس"
+
+#: pepro-cf7-db.php:316
+msgctxt "js-string"
+msgid "Submit"
+msgstr "ثبت"
+
+#: pepro-cf7-db.php:317
+msgctxt "js-string"
+msgid "Today"
+msgstr "امروز"
+
+#: pepro-cf7-db.php:318
+msgctxt "wc-setting-js"
+msgid "Error"
+msgstr "خطا"
+
+#: pepro-cf7-db.php:319
+msgctxt "wc-setting-js"
+msgid "Canceled"
+msgstr "لغو شد"
+
+#: pepro-cf7-db.php:320
+msgctxt "wc-setting-js"
+msgid "Confirm"
+msgstr "تایید کنید"
+
+#: pepro-cf7-db.php:321
+msgctxt "wc-setting-js"
+msgid "Success"
+msgstr "عملیات موفق"
+
+#: pepro-cf7-db.php:322
+msgctxt "wc-setting-js"
+msgid "Submit"
+msgstr "ثبت"
+
+#: pepro-cf7-db.php:323
+msgctxt "wc-setting-js"
+msgid "Okay"
+msgstr "باشه"
+
+#: pepro-cf7-db.php:324
+msgctxt "wc-setting-js"
+msgid "Yes"
+msgstr "بله"
+
+#: pepro-cf7-db.php:325
+msgctxt "wc-setting-js"
+msgid "No"
+msgstr "خیر"
+
+#: pepro-cf7-db.php:326
+msgctxt "wc-setting-js"
+msgid "Cancel"
+msgstr "لغو"
+
+#: pepro-cf7-db.php:327
+msgctxt "wc-setting-js"
+msgid "Send to all"
+msgstr "ارسال به لیست"
+
+#: pepro-cf7-db.php:328
+msgctxt "wc-setting-js"
+msgid "Close"
+msgstr "بستن"
+
+#: pepro-cf7-db.php:329
+msgctxt "wc-setting-js"
+msgid "Delete Submition"
+msgstr "حذف داده ثبت شده"
+
+#: pepro-cf7-db.php:330
+#, php-format
+msgctxt "wc-setting-js"
+msgid "Are you sure you want to delete submition ID %s ? This cannot be undone."
+msgstr ""
+"آیا از حذف داده ثبتی به شماره %s اطمینان دارید؟ این عملیات قابل بازگردانی "
+"نیست."
+
+#: pepro-cf7-db.php:331
+msgctxt "wc-setting-js"
+msgid ""
+"Are you sure you want to clear all data from database? This cannot be undone."
+msgstr ""
+"آیا مطمئن هستید میخواهید تمامی رکورد های دیتابیس و تاریخچه داده های ذخیره شده "
+"را حذف کنید؟ این عملیات قابل بازگشت نیست."
+
+#: pepro-cf7-db.php:332
+msgctxt "wc-setting-js"
+msgid ""
+"Are you sure you want to clear all Current Contact form data from database? "
+"This cannot be undone."
+msgstr ""
+"آیا مطمئن هستید میخواهید تمامی رکورد های دیتابیس مرتبط با فرم تماس فعلی و "
+"تاریخچه داده های ذخیره شده را حذف کنید؟ این عملیات قابل بازگردانی نیست."
+
+#: pepro-cf7-db.php:333
+msgctxt "wc-setting-js"
+msgid "Clear Database"
+msgstr "پاکسازی دیتابیس"
+
+#: pepro-cf7-db.php:335
+#, php-format
+msgctxt "wc-setting-js"
+msgid "Contact Form 7 Database Exported via %s"
+msgstr "استخراج شده توسط %s"
+
+#: pepro-cf7-db.php:336
+msgctxt "wc-setting-js"
+msgid "CF7 Database Export"
+msgstr "استخراج کننده فرم تماس 7 از پپرو"
+
+#: pepro-cf7-db.php:337
+#, php-format
+msgctxt "wc-setting-js"
+msgid "Exported at %s @ %s"
+msgstr "استخراج شده در %s @ %s"
+
+#: pepro-cf7-db.php:339
+#, php-format
+msgctxt "wc-setting-js"
+msgid ""
+"Exported via %s — Export Date: %s @ %s — Developed by Pepro Dev Team "
+"( https://pepro.dev/ )"
+msgstr ""
+"استخراج توسط %s — تاریخ: %s @ %s — توسعه یافته توسط تیم توسعه نرم‌افزاری پپرو "
+"( https://pepro.dev/ )"
+
+#: pepro-cf7-db.php:341
+msgctxt "data-table"
+msgid "No data available in table"
+msgstr "هیچ داده ای در جدول وجود ندارد"
+
+#: pepro-cf7-db.php:342
+msgctxt "data-table"
+msgid "Showing _START_ to _END_ of _TOTAL_ entries"
+msgstr "نمایش _START_ تا _END_ از _TOTAL_ رکورد"
+
+#: pepro-cf7-db.php:343
+msgctxt "data-table"
+msgid "Showing 0 to 0 of 0 entries"
+msgstr "نمایش 0 تا 0 از 0 رکورد"
+
+#: pepro-cf7-db.php:344
+msgctxt "data-table"
+msgid "(filtered from _MAX_ total entries)"
+msgstr "(فیلتر شده از _MAX_ رکورد)"
+
+#: pepro-cf7-db.php:345
+msgctxt "data-table"
+msgid "Show _MENU_ entries"
+msgstr "نمایش _MENU_ رکورد"
+
+#: pepro-cf7-db.php:346
+msgctxt "data-table"
+msgid "Loading..."
+msgstr "در حال بارگزاری ..."
+
+#: pepro-cf7-db.php:347
+msgctxt "data-table"
+msgid "Processing..."
+msgstr "در حال پردازش ..."
+
+#: pepro-cf7-db.php:348
+msgctxt "data-table"
+msgid "Search:"
+msgstr "جستجو در موارد نمایش داده شده:"
+
+#: pepro-cf7-db.php:349
+msgctxt "data-table"
+msgid "No matching records found"
+msgstr "رکوردی با این مشخصات پیدا نشد"
+
+#: pepro-cf7-db.php:350
+msgctxt "data-table"
+msgid "First"
+msgstr "ابتدا"
+
+#: pepro-cf7-db.php:351
+msgctxt "data-table"
+msgid "Last"
+msgstr "انتها"
+
+#: pepro-cf7-db.php:352
+msgctxt "data-table"
+msgid "Next"
+msgstr "بعدی"
+
+#: pepro-cf7-db.php:353
+msgctxt "data-table"
+msgid "Previous"
+msgstr "قبلی"
+
+#: pepro-cf7-db.php:354
+msgctxt "data-table"
+msgid ": activate to sort column ascending"
+msgstr ": فعال سازی نمایش به صورت صعودی"
+
+#: pepro-cf7-db.php:355
+msgctxt "data-table"
+msgid ": activate to sort column descending"
+msgstr ": فعال سازی نمایش به صورت نزولی"
+
+#: pepro-cf7-db.php:356
+msgctxt "data-table"
+msgid "Copy to clipboard"
+msgstr "کپی به کلیپ‌بورد"
+
+#: pepro-cf7-db.php:357
+msgctxt "data-table"
+msgid "Print"
+msgstr "چاپ"
+
+#: pepro-cf7-db.php:358
+msgctxt "data-table"
+msgid "Export CSV"
+msgstr "استخراج CSV"
+
+#: pepro-cf7-db.php:359
+msgctxt "data-table"
+msgid "Export Excel"
+msgstr "استخراج اکسل"
+
+#: pepro-cf7-db.php:360
+msgctxt "data-table"
+msgid "Export PDF"
+msgstr "استخراج PDF"
+
+#: pepro-cf7-db.php:422
+msgid "Select a CF7 form from list below:"
+msgstr "برای مشاهده داده های ثبت شده، یکی از فرم های تماس زیر را انتخاب کنید:"
+
+#: pepro-cf7-db.php:428
+msgid "Entered CF7 is not valid, Go back and select another Contact form"
+msgstr ""
+"فرم تماس وارد شده معتبر نیست! لطفا به صفحه قبلی بازگشته و فرم تماس جدیدی "
+"انتخاب کنید"
+
+#: pepro-cf7-db.php:433
+#, php-format
+msgid "%s → Contact Form \"%s\""
+msgstr "%s ← فرم تماس \"%s\""
+
+#: pepro-cf7-db.php:441
+msgid "Items per page"
+msgstr "تعداد در صفحه"
+
+#: pepro-cf7-db.php:442 pepro-cf7-db.php:443 pepro-cf7-db.php:444
+#: pepro-cf7-db.php:445 pepro-cf7-db.php:446 pepro-cf7-db.php:447
+#: pepro-cf7-db.php:448 pepro-cf7-db.php:449 pepro-cf7-db.php:450
+#: pepro-cf7-db.php:451 pepro-cf7-db.php:452
+#, php-format
+msgctxt "items_per_page"
+msgid "Show %s items per page"
+msgstr "نمایش %s مورد در صفحه"
+
+#: pepro-cf7-db.php:454
+#, php-format
+msgid "Show your only saved submition"
+msgid_plural "Show all %s items at once"
+msgstr[0] "نمایش تمامی %s مورد در یک صفحه"
+msgstr[1] "نمایش تنها مورد قابل نمایش"
+
+#: pepro-cf7-db.php:460
+msgid "Delete All Submitions of Current Contact form"
+msgstr "حذف تمامی داده های ثبت شده مربوط به این فرم تماس"
+
+#: pepro-cf7-db.php:461
+msgid "Edit Current Contact form"
+msgstr "ویرایش فرم تماس فعلی"
+
+#: pepro-cf7-db.php:462
+msgid "Go back and select another Contact form"
+msgstr "بازگشت به صفحه انتخاب فرم تماس"
+
+#: pepro-cf7-db.php:473
+msgid "ID"
+msgstr "آی دی"
+
+#: pepro-cf7-db.php:474
+msgid "Date Created"
+msgstr "تاریخ ایجاد"
+
+#: pepro-cf7-db.php:475
+msgid "Subject"
+msgstr "موضوع"
+
+#: pepro-cf7-db.php:476
+msgid "From"
+msgstr "کاربر"
+
+#: pepro-cf7-db.php:490
+msgid "Action"
+msgstr "عملیات"
+
+#: pepro-cf7-db.php:493
+#, php-format
+msgid "Your very first saved submition is showing below"
+msgid_plural "%s Saved Submitions found"
+msgstr[0] "تعداد %s مورد ثبت شده در دیتابیس یافت شد"
+msgstr[1] "شما در حال مشاهده تنها مورد ثبتی هستید"
+
+#: pepro-cf7-db.php:523
+msgid "Delete this specific submition"
+msgstr "حذف این مورد برای همیشه"
+
+#: pepro-cf7-db.php:545
+msgid "< Previous"
+msgstr "< قبلی"
+
+#: pepro-cf7-db.php:546
+msgid "Next >"
+msgstr "بعدی >"
+
+#: pepro-cf7-db.php:557
+msgid "Error Reading Database!"
+msgstr "خطایی در خواندن دیتابیس رخ داد!"
+
+#: pepro-cf7-db.php:558
+msgid "It seems there's nothing to show."
+msgstr "به نظر میرسد اینجا چیزی برای نمایش وجود ندارد."
+
+#: pepro-cf7-db.php:717
+#, php-format
+msgctxt "setting-page"
+msgid "Enter %s"
+msgstr "%s را وارد کنید"
+
+#: pepro-cf7-db.php:727
+#, php-format
+msgctxt "setting-page"
+msgid "Choose %s"
+msgstr "%s را انتخاب کنید"
+
+#. Plugin URI of the plugin/theme
+msgid "https://pepro.dev/cf7-database/"
+msgstr "https://pepro.dev/ultimate-invoice/"
+
+#. Description of the plugin/theme
+msgid ""
+"Save Contact From 7 Submitions into database and allows you to export saved "
+"data as CSV, Excel Spreadsheet and ..."
+msgstr ""
+"ذخیره داده های ثبتی فرم تماس 7 و نمایش به تفکیک فرم های تماس با قابلیت "
+"استخراج CSV، اکسل، داده قابل چاپ و ..."
+
+#. Author of the plugin/theme
+msgid "Pepro Dev. Group"
+msgstr "تیم برنامه ‏نویسی پپرو"
+
+#. Author URI of the plugin/theme
+msgid "https://pepro.dev/"
+msgstr "https://pepro.dev/"
