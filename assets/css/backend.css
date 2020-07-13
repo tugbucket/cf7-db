@@ -267,30 +267,25 @@ table:not(.exported_data) tbody {
 @-webkit-keyframes slide-in-top{0%{transform:translateY(-1000px);opacity:0}100%{transform:translateY(0);opacity:1}}@keyframes slide-in-top{0%{transform:translateY(-1000px);opacity:0}100%{transform:translateY(0);opacity:1}}
 
 
-[dir=rtl] [class*="_page_cf7db"] #footer-left b a::after{
-	right: 51px;
-}
-[class*="_page_cf7db"] #footer-left b a::after{
+[class*="_page_cf7db"] #footer-left b a::before {
 	content: '';
 	background: url("../images/peprodev.svg") no-repeat;
 	background-position-x: center;
 	background-position-y: center;
-	background-size: auto;
-	width: 288px;
-	height: 260px;
-	display: block;
+	background-size: contain;
+	width: 60px;
+	height: 40px;
+	display: inline-block;
 	position: absolute;
-	top: -320px;
-	right: auto;
-	left: 51px;
-	box-shadow: 0px 0px 17px -5px saddlebrown;
-	border-radius: 5px;
-	padding: 1rem;
-	visibility: hidden;
+	-webkit-margin-before: calc(-60px + 1rem);
+	        margin-block-start: calc(-60px + 1rem);
+	-webkit-filter: opacity(0.0);
+	filter: opacity(0.0);
+	transition: all 0.3s ease-in-out;
 }
 
-[class*="_page_cf7db"] #footer-left b a:hover::after{
-	-webkit-animation: slide-in-top 0.5s cubic-bezier(.25,.46,.45,.94) both;
-	animation: slide-in-top 0.5s cubic-bezier(.25,.46,.45,.94) both;
-	visibility: visible;
+[class*="_page_cf7db"] #footer-left b a:hover::before {
+	-webkit-filter: opacity(1.0);
+	filter: opacity(1.0);
+	transition: all 0.3s ease-in-out;
 }

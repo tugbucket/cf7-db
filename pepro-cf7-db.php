@@ -509,7 +509,9 @@ if (!class_exists("cf7Database")) {
                                                   $val = "<p>". date_i18n( get_option('date_format'), $obj->date_created ) . "</p><p>" . date_i18n( get_option('time_format'), $obj->date_created )."</p>";
                                                   break;
                                                 case 'email':
-                                                  $val = "{$data_array['your-name']} &lt;{$data_array['your-email']}&gt;";
+                                                  $name = (isset($data_array['your-name'])?$data_array['your-name']:"");
+                                                  $email = (isset($data_array['your-email'])?$data_array['your-email']:"");
+                                                  $val = "{$name} &lt;{$email}&gt;";
                                                   break;
                                                 case 'action':
                                                   $val = "<a href='javascript:;' title='".esc_attr__("Delete this specific submition", $this->td)."' class=\"button delete_item\" data-lid='{$obj->id}' ><span class='dashicons dashicons-trash'></span></a>
