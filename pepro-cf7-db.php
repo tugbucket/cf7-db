@@ -23,14 +23,6 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 */
 defined("ABSPATH") or die("CF7 Database :: Unauthorized Access!");
- define( 'WP_DEBUG', true );
- define( 'WP_DEBUG_LOG', true );
- define( 'WP_DEBUG_DISPLAY', true );
- define( 'SCRIPT_DEBUG', true );
- define( 'SAVEQUERIES', true );
- @ini_set( 'display_errors', 1 );
- error_reporting(E_ERROR|E_WARNING);
- define( 'WC_TEMPLATE_DEBUG_MODE', true );
 
 if (!class_exists("cf7Database")) {
     class cf7Database
