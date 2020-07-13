@@ -120,12 +120,16 @@ pre::nth-line(n)::before {
 	margin-right: -20px !important;
 }
 
-[dir=rtl] .jconfirm-box {
+[dir=ltr] .jconfirm-box {
+	font-family: bodyfont !important;
+}
+
+[dir=rtl] h1.had {
 	font-family: bodyfont !important;
 }
 
 h1.had {
-	font-family: bodyfont !important;
+	font-family: inherit !important;
 	font-weight: 800 !important;
 	height: 7rem;
 	line-height: 4;
