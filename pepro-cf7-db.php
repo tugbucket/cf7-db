@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: CF7 Database
-Description: Save Contact From 7 Submitions into database and allows you to export saved data as CSV, Excel Spreadsheet and ...
+Description: Save Contact From 7 Submission into database and allows you to export saved data as CSV, Excel Spreadsheet and ...
 Contributors: amirhosseinhpv, peprodev
 Tags: contact form 7, contact form 7 database, cf7 database
 Author: Pepro Dev. Group
@@ -128,7 +128,7 @@ if (!class_exists("cf7Database")) {
             }
             $this->manage_links = array(
               $this->settingURL . __("Settings", $this->td) => $this->url,
-              $this->submitionURL . __("Submitions", $this->td) => $this->url,
+              $this->submitionURL . __("Submission", $this->td) => $this->url,
             );
             return $this->manage_links;
         }
@@ -258,7 +258,7 @@ if (!class_exists("cf7Database")) {
                 "{$this->assets_url}images/peprodev.svg",
                 81
             );
-            $page_title = __("List of CF7 Submitions", $this->td);
+            $page_title = __("List of CF7 Submission", $this->td);
             $menu_title = __("Setting", $this->td);
             add_submenu_page($this->db_slug, $page_title, $menu_title, "manage_options", "{$this->db_slug}-setting", array($this,'help_container'));
 
@@ -449,7 +449,7 @@ if (!class_exists("cf7Database")) {
             ?>
             <div class="wrap">
               <p style="text-align: center; display: block;">
-                <button style='margin: .5rem;' class='button dt-button hrefbtn' id="emptySelectedCf7DB" href='#' data-rel="<?=$cf7;?>"><?=__("Delete All Submitions of Current Contact form",$this->td);?></button>
+                <button style='margin: .5rem;' class='button dt-button hrefbtn' id="emptySelectedCf7DB" href='#' data-rel="<?=$cf7;?>"><?=__("Delete All Submission of Current Contact form",$this->td);?></button>
                 <button style='margin: .5rem;' class='button dt-button hrefbtn' target="_blank" href='<?=admin_url("admin.php?page=wpcf7&post=$cf7&action=edit");?>'><?=__("Edit Current Contact form",$this->td);?></button>
                 <button style='margin: .5rem;' class='button dt-button hrefbtn' href='<?="{$this->url}";?>'><?=__("Go back and select another Contact form",$this->td);?></button>
               </p>
@@ -482,7 +482,7 @@ if (!class_exists("cf7Database")) {
                       $header["action"] = __('Action',$this->td);
                       $header = array_unique($header);
                       echo "
-                            <p><b>". sprintf(_n( "Your very first saved submition is showing below", "%s Saved Submitions found", $total, $this->td ), $total) . "</b>   {$items_per_page_selceter}</p>
+                            <p><b>". sprintf(_n( "Your very first saved submition is showing below", "%s Saved Submission found", $total, $this->td ), $total) . "</b>   {$items_per_page_selceter}</p>
                           			<table border=\"1\" id=\"exported_data\" class=\"exported_data\">
                           			   <thead>
                               			     <tr>";
