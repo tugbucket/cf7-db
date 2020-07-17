@@ -54,8 +54,9 @@ You can help us improve our works by committing your changes to Pepro Dev's Gith
 
 == Screenshots ==
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif).
-2. This is the second screen shot
+1. CF7Db Submissions Export Listview
+2. CF7Db Setting
+3. CF7Db in Plugins Screen
 
 == Changelog ==
 

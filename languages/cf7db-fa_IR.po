@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CF7 Database\n"
-"POT-Creation-Date: 2020-07-17 13:03+0430\n"
-"PO-Revision-Date: 2020-07-17 13:03+0430\n"
+"POT-Creation-Date: 2020-07-17 13:17+0430\n"
+"PO-Revision-Date: 2020-07-17 13:18+0430\n"
 "Last-Translator: Amirhosseinhpv <amirhossein@hpv.im>\n"
 "Language-Team: Amirhosseinhpv <amirhossein@hpv.im>\n"
 "Language: fa_IR\n"
@@ -21,7 +21,6 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#. Plugin Name of the plugin/theme
 #: pepro-cf7-db.php:70
 msgid "CF7 Database"
 msgstr "دیتابیس فرم تماس 7"
@@ -485,6 +484,10 @@ msgstr "%s را وارد کنید"
 msgctxt "setting-page"
 msgid "Choose %s"
 msgstr "%s را انتخاب کنید"
+
+#. Plugin Name of the plugin/theme
+msgid "Pepro CF7 Database"
+msgstr "دیتابیس فرم تماس 7 از پپرو"
 
 #. Plugin URI of the plugin/theme
 msgid "https://pepro.dev/cf7-database/"
