@@ -3,7 +3,7 @@
 Plugin Name: Pepro CF7 Database
 Description: Save Contact From 7 Submission into database and allows you to export saved data as CSV, Excel Spreadsheet and ...
 Contributors: amirhosseinhpv, peprodev
-Tags: contact form 7, contact form 7 database, cf7 database
+Tags: contact form 7, wordpress contact form, cf7 database, contact form 7 database
 Author: Pepro Dev. Group
 Developer: Amirhosseinhpv
 Author URI: https://pepro.dev/

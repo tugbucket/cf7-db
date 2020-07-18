@@ -1,7 +1,7 @@
 === Pepro CF7 Database ===
 Contributors: peprodev,amirhosseinhpv
 Donate link: https://pepro.dev/donate
-Tags: woocommerce invoice, invoice, email invoice, attach pdf invoice, pdf invoice, functionality, dark mode, wordpress, modern design, customization, e-commerce
+Tags: contact form 7, wordpress contact form, cf7 database, contact form 7 database
 Requires at least: 5.0
 Tested up to: 5.4
 Stable tag: 1.0.0
