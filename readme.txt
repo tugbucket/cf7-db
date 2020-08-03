@@ -3,7 +3,7 @@ Contributors: peprodev,amirhosseinhpv
 Donate link: https://pepro.dev/donate
 Tags: contact form 7, wordpress contact form, cf7 database, contact form 7 database
 Requires at least: 5.0
-Tested up to: 5.4
+Tested up to: 5.5
 Stable tag: 1.0.0
 Requires PHP: 5.6
 License: GPLv2 or later
@@ -49,7 +49,7 @@ Here are some awesome features of CF7-DB:
 
 = How can I contribute to this plugin? =
 
-You can help us improve our works by committing your changes to Pepro Dev's Github repository: https://github.com/peprodev/ultimate-invoice
+You can help us improve our works by committing your changes to Pepro Dev's Github repository: https://github.com/peprodev/
 
 
 == Screenshots ==
