@@ -9,8 +9,8 @@ Developer: Amirhosseinhpv
 Author URI: https://pepro.dev/
 Developer URI: https://hpv.im/
 Plugin URI: https://pepro.dev/cf7-database/
-Version: 1.0.0
-Stable tag: 1.0.0
+Version: 1.0.1
+Stable tag: 1.0.1
 Requires at least: 5.0
 Tested up to: 5.4
 Requires PHP: 5.6
@@ -60,7 +60,7 @@ if (!class_exists("cf7Database")) {
             $this->plugin_basename = plugin_basename(__FILE__);
             $this->url = admin_url("admin.php?page={$this->db_slug}");
             $this->plugin_file = __FILE__;
-            $this->version = "1.0.0";
+            $this->version = "1.0.1";
             $this->deactivateURI = null;
             $this->deactivateICON = '<span style="font-size: larger; line-height: 1rem; display: inline; vertical-align: text-top;" class="dashicons dashicons-dismiss" aria-hidden="true"></span> ';
             $this->versionICON = '<span style="font-size: larger; line-height: 1rem; display: inline; vertical-align: text-top;" class="dashicons dashicons-admin-plugins" aria-hidden="true"></span> ';
