@@ -9,13 +9,11 @@ Developer: Amirhosseinhpv
 Author URI: https://pepro.dev/
 Developer URI: https://hpv.im/
 Plugin URI: https://pepro.dev/cf7-database/
-Version: 1.0.1
-Stable tag: 1.0.1
+Version: 1.1.0
+Stable tag: 1.1.0
 Requires at least: 5.0
-Tested up to: 5.4
+Tested up to: 5.5
 Requires PHP: 5.6
-WC requires at least: 4.0
-WC tested up to: 4.2.0
 Text Domain: cf7db
 Domain Path: /languages
 Copyright: (c) 2020 Pepro Dev. Group, All rights reserved.
@@ -60,7 +58,7 @@ if (!class_exists("cf7Database")) {
             $this->plugin_basename = plugin_basename(__FILE__);
             $this->url = admin_url("admin.php?page={$this->db_slug}");
             $this->plugin_file = __FILE__;
-            $this->version = "1.0.1";
+            $this->version = "1.1.0";
             $this->deactivateURI = null;
             $this->deactivateICON = '<span style="font-size: larger; line-height: 1rem; display: inline; vertical-align: text-top;" class="dashicons dashicons-dismiss" aria-hidden="true"></span> ';
             $this->versionICON = '<span style="font-size: larger; line-height: 1rem; display: inline; vertical-align: text-top;" class="dashicons dashicons-admin-plugins" aria-hidden="true"></span> ';
@@ -83,7 +81,8 @@ if (!class_exists("cf7Database")) {
             $this->CreateDatabase(); // always check if table exist or not
             add_action( 'wpcf7_before_send_mail',  array($this, 'contactform7_before_send_mail_hook') );
         }
-        public function contactform7_before_send_mail_hook( $form_to_DBs ) {
+        public function contactform7_before_send_mail_hook( $form_to_DBs )
+        {
           $form_to_DB = WPCF7_Submission::get_instance();
           if ( $form_to_DB ) {
             $formData = $form_to_DB->get_posted_data();
@@ -127,7 +126,7 @@ if (!class_exists("cf7Database")) {
             if (!empty($this->manage_links)) {return $this->manage_links;
             }
             $this->manage_links = array(
-              $this->settingURL . __("Settings", $this->td) => $this->url,
+              $this->settingURL . __("Settings", $this->td) => "$this->url-setting",
               $this->submitionURL . __("Submission", $this->td) => $this->url,
             );
             return $this->manage_links;
@@ -270,8 +269,8 @@ if (!class_exists("cf7Database")) {
             $input_number = ' dir="ltr" lang="en-US" min="0" step="1" ';
             $input_english = ' dir="ltr" lang="en-US" ';
             $input_required = ' required ';
-            wp_enqueue_style("jQconfirm");
-            wp_enqueue_script("jQconfirm");
+            wp_enqueue_style("{$this->td}_jQconfirm");
+            wp_enqueue_script("{$this->td}_jQconfirm");
             wp_enqueue_style("fontawesome","https://use.fontawesome.com/releases/v5.13.1/css/all.css", array(), '5.13.1', 'all');
             wp_enqueue_style("{$this->db_slug}", "{$this->assets_url}css/backend.css");
             wp_enqueue_script("{$this->db_slug}", "{$this->assets_url}js/backend.js", array('jquery'), null, true);
@@ -359,41 +358,20 @@ if (!class_exists("cf7Database")) {
         public function db_container()
         {
             ob_start();
-
             $this->update_footer_info();
             $now = current_time('timestamp');
             $randomnum = random_int( 15740, 68414866 );
-            // $this->save_submition(
-            //   "New MSG on " . date_i18n("y-m-d h-m-s",$now),
-            //   "Amirhossein",
-            //   "user{$randomnum}@gmail.com",
-            //   "{$randomnum}/{$randomnum} Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-            //   "{$randomnum}/{$randomnum} Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-            // );
-
             wp_enqueue_style("{$this->db_slug}", "{$this->assets_url}css/backend.css");
-
-            wp_enqueue_style("datatable");
-            wp_enqueue_style("SrchHighlt");
-            wp_enqueue_style("jQconfirm");
-            wp_enqueue_style("fontawesome","https://use.fontawesome.com/releases/v5.13.1/css/all.css", array(), '5.13.1', 'all');
-
-            wp_enqueue_script("jQconfirm");
-            wp_enqueue_script("datatable");
-            wp_enqueue_script("highlight.js");
-            wp_enqueue_script("SrchHighlt");
-
-            /* needs for PDF export function word properly but due to not supporting utf-8 we ignore these*/
-            // wp_enqueue_script( "s1", "https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js", array("jquery"), false);
-            // wp_enqueue_script( "s1", "https://cdn.datatables.net/buttons/1.6.2/js/buttons.flash.min.js", array("jquery"), false);
-            // wp_enqueue_script( "s2", "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js", array("jquery"), false);
-            // wp_enqueue_script( "s3", "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js", array("jquery"), false);
-            // wp_enqueue_script( "s4", "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js", array("jquery"), false);
-            // wp_enqueue_script( "s5", "https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js", array("jquery"), false);
-            // wp_enqueue_script( "s6", "https://cdn.datatables.net/buttons/1.6.2/js/buttons.print.min.js", array("jquery"), false);
-
-            wp_enqueue_script("{$this->db_slug}", "{$this->assets_url}/js/backend.js", array('jquery'), null, true);
+            wp_enqueue_style("{$this->td}_datatable");
+            wp_enqueue_style("{$this->td}_jQconfirm");
+            wp_enqueue_style("{$this->td}_fontawesome","https://use.fontawesome.com/releases/v5.13.1/css/all.css", array(), '5.13.1', 'all');
+            wp_enqueue_script("{$this->td}_jQconfirm");
+            wp_enqueue_script("{$this->td}_datatable");
+            wp_enqueue_script("{$this->td}_highlight.js");
+            wp_enqueue_script("{$this->td}_SrchHighlt");
+            wp_register_script("{$this->db_slug}", "{$this->assets_url}/js/backend.js", array('jquery'), null, true);
             wp_localize_script("{$this->db_slug}", "_i18n", $this->localize_script());
+            wp_enqueue_script("{$this->db_slug}");
             $this->print_table_style();
 
             is_rtl() AND wp_add_inline_style("{$this->db_slug}", ".form-table th {}#wpfooter, #wpbody-content *:not(.dashicons ), #wpbody-content input:not([dir=ltr]), #wpbody-content textarea:not([dir=ltr]), h1.had, .caqpde>b.fa{ font-family: bodyfont, roboto, Tahoma; }");
@@ -465,19 +443,25 @@ if (!class_exists("cf7Database")) {
 
 
                       $header = array(
-                        "_sharp_id"            =>  __('ID',$this->td)           ,
-                        "date_created"  =>  __('Date Created',$this->td) ,
-                        "your-subject"  =>  __('Subject',$this->td)      ,
-                        "email"         =>  __('From',$this->td)         ,
-                        // "details"       =>  __('Details',$this->td)      ,
-                        // "action"        =>  __('Action',$this->td)       ,
+                        "_sharp_id"            =>  __('ID',$this->td),
+                        "date_created"  =>  __('Date Created',$this->td),
                       );
 
                       foreach ( $res_obj as $obj ){
                         $data_array = unserialize($obj->details);
-                        unset($data_array["your-subject"]);
-                        unset($data_array["your-name"]);
-                        unset($data_array["your-email"]);
+                        if (isset($data_array["your-email"]) && isset($data_array["your-name"])){
+                          unset($data_array["your-name"]);
+                          unset($data_array["your-email"]);
+                          $header["your-email"] = __('From',$this->td);
+                        }
+                        if (isset($data_array["your-subject"])){
+                          unset($data_array["your-subject"]);
+                          $header["your-subject"] = __('Subject',$this->td);
+                        }
+                        if (isset($data_array["your-message"])){
+                          unset($data_array["your-message"]);
+                          $header["your-message"] = __('Message',$this->td);
+                        }
                         foreach ( $data_array as $key => $value) {
                           $header[$key] = $key;
                         }
@@ -511,8 +495,9 @@ if (!class_exists("cf7Database")) {
                                                 case 'date_created':
                                                   $val = "<p>". date_i18n( get_option('date_format'), $obj->date_created ) . "</p><p>" . date_i18n( get_option('time_format'), $obj->date_created )."</p>";
                                                   break;
-                                                case 'email':
+                                                case 'your-email':
                                                   $name = (isset($data_array['your-name'])?$data_array['your-name']:"");
+                                                  $email = (isset($data_array['your-email'])?$data_array['your-email']:"");
                                                   $email = (isset($data_array['your-email'])?$data_array['your-email']:"");
                                                   $val = "{$name} &lt;{$email}&gt;";
                                                   break;
@@ -522,10 +507,21 @@ if (!class_exists("cf7Database")) {
                                                   break;
 
                                                 default:
-                                                  $val = nl2br(esc_html($data_array[$key]));
+                                                  if (isset($data_array[$key])){
+                                                    $data = $data_array[$key];
+                                                  }else{
+                                                    $data = "";
+                                                  }
+                                                  if (is_array($data)){
+                                                    // foreach ($data as $key => $value) {
+                                                    //   $dataTmp .= "$key => $value\r\n";
+                                                    // }
+                                                    $data = implode(",\r\n", $data);
+                                                  }
+                                                  $val = esc_html($data);
                                                   break;
                                               }
-                                          echo "<td class='item_{$key} itd_{$obj->id}'>{$val}</th>";
+                                          echo "<td class='item_{$key} itd_{$obj->id}'><pre>{$val}</pre></th>";
                                         }
                                         echo "</tr>";
                                       }
@@ -577,18 +573,17 @@ if (!class_exists("cf7Database")) {
 
             wp_enqueue_style("{$this->db_slug}-backend-all", "{$this->assets_url}css/backend-all.css", array(), '1.0', 'all');
 
-            wp_register_style("select2",       "{$this->assets_url}css/select2.min.css", false, "4.1.0", "all");
-            wp_register_script("select2",      "{$this->assets_url}js/select2.min.js", array( "jquery" ), "4.1.0", true);
+            wp_register_style("{$this->td}_select2",       "{$this->assets_url}css/select2.min.css", false, "4.1.0", "all");
+            wp_register_script("{$this->td}_select2",      "{$this->assets_url}js/select2.min.js", array( "jquery" ), "4.1.0", true);
 
-            wp_register_style("jQconfirm",     "{$this->assets_url}css/jquery-confirm.css", false, "4.1.0", "all");
-            wp_register_script("jQconfirm",    "{$this->assets_url}js/jquery-confirm.js", array( "jquery" ), "4.1.0", true);
+            wp_register_style("{$this->td}_jQconfirm",     "{$this->assets_url}css/jquery-confirm.css", false, "4.1.0", "all");
+            wp_register_script("{$this->td}_jQconfirm",    "{$this->assets_url}js/jquery-confirm.js", array( "jquery" ), "4.1.0", true);
 
-            wp_register_style("datatable",     "{$this->assets_url}css/jquery.dataTables.min.css", false, "1.10.21", "all");
-            wp_register_script("datatable",    "{$this->assets_url}js/jquery.dataTables.min.js", array( "jquery" ), "1.10.21", true);
+            wp_register_style("{$this->td}_datatable",     "{$this->assets_url}css/jquery.dataTables.min.css", array(), current_time( "timestamp" ));
+            wp_register_script("{$this->td}_datatable",    "{$this->assets_url}js/jquery.dataTables.min.js", array( "jquery" ), "1.10.21", true);
 
-            wp_register_style("SrchHighlt",    "{$this->assets_url}css/dataTables.searchHighlight.css", false, "1.0.1", "all");
-            wp_register_script("SrchHighlt",   "{$this->assets_url}js/dataTables.searchHighlight.min.js", array( "jquery" ), "1.0.1", true);
-            wp_register_script("highlight.js", "{$this->assets_url}js/highlight.js", array( "jquery" ), "3.0.0", true);
+            wp_register_script("{$this->td}_SrchHighlt",   "{$this->assets_url}js/dataTables.searchHighlight.min.js", array( "jquery" ), "1.0.1", true);
+            wp_register_script("{$this->td}_highlight.js", "{$this->assets_url}js/highlight.js", array( "jquery" ), "3.0.0", true);
 
         }
         public function save_submition($subject, $from, $email, $details, $extra_info)

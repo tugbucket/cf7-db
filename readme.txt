@@ -4,7 +4,7 @@ Donate link: https://pepro.dev/donate
 Tags: contact form 7, wordpress contact form, cf7 database, contact form 7 database
 Requires at least: 5.0
 Tested up to: 5.5
-Stable tag: 1.0.1
+Stable tag: 1.1.0
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -60,6 +60,12 @@ You can help us improve our works by committing your changes to Pepro Dev's Gith
 
 == Changelog ==
 
+= 1.1.0 =
+
+-   CF7 Compatibility Fix
+-   WordPress 5.5 Compatible
+-   Now Read CF7 Tags Better, and Supports Radio, Checkbox, Select and Multiselect
+
 = 1.0.1 =
 
 -   Directory Index Blocked for resources
@@ -76,6 +82,12 @@ Join us at [https://pepro.dev/](https://pepro.dev/) and also don't forget to che
 
 
 == Upgrade Notice ==
+
+= 1.1.0 =
+
+-   CF7 Compatibility Fix
+-   WordPress 5.5 Compatible
+-   Now Read CF7 Tags Better, and Supports Radio, Checkbox, Select and Multiselect
 
 = 1.0.1 =
 

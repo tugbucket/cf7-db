@@ -289,3 +289,10 @@ table:not(.exported_data) tbody {
 	filter: opacity(1.0);
 	transition: all 0.3s ease-in-out;
 }
+
+tr.highlight {
+	background: #ffff0070 !important;
+}
+.dark-edition tr.highlight {
+	background: #f2f287 !important;
+}

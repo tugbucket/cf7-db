@@ -1,5 +1,6 @@
 (function($) {
   $(document).ready(function() {
+    console.log("ss");
     var export_title = _i18n.str2,
       export_title_html = "<style>h1{text-align: center !important;}body{padding: 1rem;}</style><h2 align='center'>"+_i18n.str1+"</span></h2>",
       export_subtitle = _i18n.str3,
@@ -125,13 +126,6 @@
       searchHighlight: true,
       dom: 'Bfrtip',
       buttons: [
-        // {
-        //   text: 'Delete All Submitions of Current Contact form',
-        //   action: function ( e, dt, node, config ) {
-        //       dt.ajax.reload();
-        //   }
-        // },
-        // 'pdf', /*does not work with utf-8*/
         {
           extend: 'excel',
           text: _i18n.tbl19,
@@ -180,7 +174,7 @@
             columns: "thead th:not(.noExport)"
           },
         },
-        // 'colvis'
+        'colvis'
       ]
     });
       table.on('draw', function() {
@@ -189,7 +183,6 @@
       body.highlight(table.search());
     });
     }
-
     $(document).on("click tap", "#emptyDbNow", function(e) {
       e.preventDefault();
       var me = $(this);
@@ -266,7 +259,6 @@
           }
       });
     });
-
     $(document).on("click tap", "#emptySelectedCf7DB", function(e) {
       e.preventDefault();
       var me = $(this);
@@ -345,19 +337,20 @@
           }
       });
     });
-
     $(document).on("click tap", ".dt-button.hrefbtn", function(e) {
       e.preventDefault();
       let me = $(this);
       window.location.href = me.attr("href");
     });
-    $(document).on('change', '#itemsperpagedisplay', function() {
+    $(document).on('change',    "#itemsperpagedisplay", function() {
       $("form#mainform").submit();
     });
-    $(document).on("click tap", ".item_action .delete_item", function(e) {
+    $(document).on("click tap", "a.delete_item", function(e) {
       e.preventDefault();
       let me = $(this);
       var id = me.data("lid");
+      $(`tr.highlight`).removeClass("highlight");
+      $(`tr.item_${id}`).addClass("highlight");
       var jc = $.confirm({
         title: _i18n.deleteConfirmTitle,
         content: _i18n.deleteConfirmation.replace("%s", `<u><strong>${id}</strong></u>`),
@@ -370,7 +363,9 @@
             text: txtNop,
             btnClass: 'btn-red',
             keys: ['n', 'esc'],
-            action: function() {}
+            action: function() {
+              $(`tr.highlight`).removeClass("highlight");
+            }
           },
           yes: {
             text: txtYes,
@@ -426,6 +421,27 @@
                       }
                     });
                   }
+                },
+                error: function(result) {
+                  jc.close();
+                  me.next(".spinner").css("visibility", "hidden");
+                  $.confirm({
+                    title: errorTxt,
+                    content: "UNKNOWN ERROR OCCURED.",
+                    icon: 'fa fa-exclamation-triangle',
+                    type: 'red',
+                    boxWidth: '400px',
+                    buttons: {
+                      close: {
+                        text: closeTxt,
+                        keys: ['enter', 'esc'],
+                        action: function() {}
+                      }
+                    }
+                  });
+                },
+                complete: function(result) {
+                  $(`tr.highlight`).removeClass("highlight");
                 }
               });
               return false;
