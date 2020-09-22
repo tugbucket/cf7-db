@@ -1,6 +1,5 @@
 (function($) {
   $(document).ready(function() {
-    console.log("ss");
     var export_title = _i18n.str2,
       export_title_html = "<style>h1{text-align: center !important;}body{padding: 1rem;}</style><h2 align='center'>"+_i18n.str1+"</span></h2>",
       export_subtitle = _i18n.str3,
@@ -174,7 +173,10 @@
             columns: "thead th:not(.noExport)"
           },
         },
-        'colvis'
+        {
+          extend: 'colvis',
+          text: _i18n.tbl177,}
+
       ]
     });
       table.on('draw', function() {
@@ -192,6 +194,7 @@
           boxWidth: '600px',
           icon: 'fas fa-trash-alt',
           closeIcon: true,
+          type: "red",
           animation: 'scale',
           buttons: {
               no: {
@@ -268,6 +271,7 @@
           boxWidth: '600px',
           icon: 'fas fa-trash-alt',
           closeIcon: true,
+          type: "red",
           animation: 'scale',
           buttons: {
               no: {

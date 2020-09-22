@@ -9,8 +9,8 @@ Developer: Amirhosseinhpv
 Author URI: https://pepro.dev/
 Developer URI: https://hpv.im/
 Plugin URI: https://pepro.dev/cf7-database/
-Version: 1.1.0
-Stable tag: 1.1.0
+Version: 1.2.0
+Stable tag: 1.2.0
 Requires at least: 5.0
 Tested up to: 5.5
 Requires PHP: 5.6
@@ -58,7 +58,7 @@ if (!class_exists("cf7Database")) {
             $this->plugin_basename = plugin_basename(__FILE__);
             $this->url = admin_url("admin.php?page={$this->db_slug}");
             $this->plugin_file = __FILE__;
-            $this->version = "1.1.0";
+            $this->version = "1.2.0";
             $this->deactivateURI = null;
             $this->deactivateICON = '<span style="font-size: larger; line-height: 1rem; display: inline; vertical-align: text-top;" class="dashicons dashicons-dismiss" aria-hidden="true"></span> ';
             $this->versionICON = '<span style="font-size: larger; line-height: 1rem; display: inline; vertical-align: text-top;" class="dashicons dashicons-admin-plugins" aria-hidden="true"></span> ';
@@ -86,6 +86,16 @@ if (!class_exists("cf7Database")) {
           $form_to_DB = WPCF7_Submission::get_instance();
           if ( $form_to_DB ) {
             $formData = $form_to_DB->get_posted_data();
+
+            $contact_form = WPCF7_ContactForm::get_current();
+            $contact_form_id = $contact_form->id();
+
+            if ($uploaded_files = $form_to_DB->uploaded_files()) {
+                foreach ($uploaded_files as $fieldName => $filepath) {
+                    $data = $this->save_cf7_attachment($filepath, $contact_form_id);
+                    $formData[$fieldName] = "FILEURL:$data";
+                }
+            }
             $subject = isset($formData['your-subject']) ? $formData['your-subject'] : "";
             $name = isset($formData['your-name']) ? $formData['your-name'] : "";
             $email = isset($formData['your-email']) ? $formData['your-email'] : "";
@@ -93,6 +103,32 @@ if (!class_exists("cf7Database")) {
             $details = serialize( $formData );
             $this->save_submition($subject, $name, $email, $details, $extra_info);
           }
+        }
+        protected function save_cf7_attachment($filename,$postID)
+        {
+            // Check the type of file. We'll use this as the 'post_mime_type'.
+            $filetype = wp_check_filetype(basename($filename), null);
+            // Get the path to the upload directory.
+            $filenameNew = pathinfo($filename, PATHINFO_FILENAME) . "--". date_i18n( "Y-m-d-H-i-s",current_time( "timestamp" ) ) . ".{$filetype['ext']}";
+            $wp_upload_dir = wp_upload_dir();
+            $attachFileName = $wp_upload_dir['path'] . '/' . $filenameNew;
+            copy($filename, $attachFileName);
+            // Prepare an array of post data for the attachment.
+            $attachment = array(
+                'guid'           => $attachFileName,
+                'post_mime_type' => $filetype['type'],
+                'post_title'     => preg_replace('/\.[^.]+$/', '', $filenameNew),
+                'post_content'   => '',
+                'post_status'    => 'inherit'
+            );
+            // Insert the attachment.
+            $attach_id = wp_insert_attachment($attachment, $attachFileName, $postID);
+            // Make sure that this file is included, as wp_generate_attachment_metadata() depends on it.
+            require_once(ABSPATH . 'wp-admin/includes/image.php');
+            // Generate the metadata for the attachment, and update the database record.
+            $attach_data = wp_generate_attachment_metadata($attach_id, $attachFileName);
+            wp_update_attachment_metadata($attach_id, $attach_data);
+            return wp_get_attachment_url( $attach_id );
         }
         public function get_setting_options()
         {
@@ -155,11 +191,10 @@ if (!class_exists("cf7Database")) {
         }
         public function CreateDatabase()
         {
-            global $wpdb;
-            $charset_collate = $wpdb->get_charset_collate();
-            $tbl = $this->db_table;
-            if ($wpdb->get_var("SHOW TABLES LIKE '". $tbl ."'") != $tbl ) {
-                $sql = "CREATE TABLE `$tbl` (
+          global $wpdb;
+          $charset_collate = $wpdb->get_charset_collate();
+          $tbl = $this->db_table;
+          if ($wpdb->get_var("SHOW TABLES LIKE '". $tbl ."'") != $tbl ) { $sql = "CREATE TABLE `$tbl` (
             `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
             `date_created` DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
             `subject` VARCHAR(512),
@@ -169,32 +204,26 @@ if (!class_exists("cf7Database")) {
             `extra_info` TEXT,
             PRIMARY KEY id (id)
           ) $charset_collate;";
-                if(!function_exists('dbDelta')) {include_once ABSPATH . 'wp-admin/includes/upgrade.php';
-                }
-                dbDelta($sql);
-                // error_log("$tbl Created");
-            }else{
-                // error_log("$tbl Already Exist");
-            }
+          if(!function_exists('dbDelta')){
+            include_once ABSPATH . 'wp-admin/includes/upgrade.php'; }
+            dbDelta($sql);
+          }
         }
         public function DropDatabase()
         {
             global $wpdb;
             $wpdb->query("DROP TABLE IF EXISTS {$this->db_table}");
         }
-        private function update_footer_info()
+        protected function update_footer_info()
         {
-            add_filter(
-                'admin_footer_text', function () {
-                    return sprintf(_x("Thanks for using %s products", "footer-copyright", $this->td), "<b><a href='https://pepro.dev/' target='_blank' >".__("Pepro Dev", $this->td)."</a></b>");
-                }, 11
-            );
-            add_filter(
-                'update_footer', function () {
-                    return sprintf(_x("%s — Version %s", "footer-copyright", $this->td), $this->title, $this->version);
-                }, 11
-            );
-        }
+           $f = "pepro_temp_stylesheet.".current_time("timestamp");
+           wp_register_style($f, null);
+           wp_add_inline_style($f," #footer-left b a::before { content: ''; background: url('{$this->assets_url}/images/peprodev.svg') no-repeat; background-position-x: center; background-position-y: center; background-size: contain; width: 60px; height: 40px; display: inline-block; pointer-events: none; position: absolute; -webkit-margin-before: calc(-60px + 1rem); margin-block-start: calc(-60px + 1rem); -webkit-filter: opacity(0.0);
+           filter: opacity(0.0); transition: all 0.3s ease-in-out; }#footer-left b a:hover::before { -webkit-filter: opacity(1.0); filter: opacity(1.0); transition: all 0.3s ease-in-out; }[dir=rtl] #footer-left b a::before {margin-inline-start: calc(30px);}");
+           wp_enqueue_style($f);
+           add_filter( 'admin_footer_text', function () { return sprintf(_x("Thanks for using %s products", "footer-copyright", $this->td), "<b><a href='https://pepro.dev/' target='_blank' >".__("Pepro Dev", $this->td)."</a></b>");}, 11000 );
+           add_filter( 'update_footer', function () { return sprintf(_x("%s — Version %s", "footer-copyright", $this->td), $this->title, $this->version); }, 1100 );
+         }
         public function handel_ajax_req()
         {
             if (wp_doing_ajax() && $_POST['action'] == "cf7db_{$this->td}") {
@@ -349,6 +378,7 @@ if (!class_exists("cf7Database")) {
             "tbl15"    => _x(": activate to sort column descending", "data-table", $this->td),
             "tbl16"    => _x("Copy to clipboard", "data-table", $this->td),
             "tbl17"    => _x("Print", "data-table", $this->td),
+            "tbl177"   => _x("Column visibility", "data-table", $this->td),
             "tbl18"    => _x("Export CSV", "data-table", $this->td),
             "tbl19"    => _x("Export Excel", "data-table", $this->td),
             "tbl20"    => _x("Export PDF", "data-table", $this->td),
@@ -483,6 +513,18 @@ if (!class_exists("cf7Database")) {
                     			               echo "
                                          </tr>
                         			     </thead>
+                          			   <tfoot>
+                              			     <tr>";
+                                         foreach ($header as $key => $value) {
+                                           $extraClass = "";
+                                           if (in_array($key, apply_filters( "pepro_cf7db_hide_col_from_export", array("action","_sharp_id")))){
+                                             $extraClass = "noExport";
+                                           }
+                                           echo "<th class='th-{$key} $extraClass'>{$value}</th>";
+                                         }
+                    			               echo "
+                                         </tr>
+                        			     </tfoot>
                   			           <tbody>";
                                       foreach ( $res_obj as $obj ){
                                         $data_array = unserialize($obj->details);
@@ -491,19 +533,23 @@ if (!class_exists("cf7Database")) {
                                               switch ($key) {
                                                 case '_sharp_id':
                                                   $val = $obj->id;
+                                                  echo "<td class='item_{$key} itd_{$obj->id}'>{$val}</th>";
                                                   break;
                                                 case 'date_created':
                                                   $val = "<p>". date_i18n( get_option('date_format'), $obj->date_created ) . "</p><p>" . date_i18n( get_option('time_format'), $obj->date_created )."</p>";
+                                                  echo "<td class='item_{$key} itd_{$obj->id}'>{$val}</th>";
                                                   break;
                                                 case 'your-email':
                                                   $name = (isset($data_array['your-name'])?$data_array['your-name']:"");
                                                   $email = (isset($data_array['your-email'])?$data_array['your-email']:"");
                                                   $email = (isset($data_array['your-email'])?$data_array['your-email']:"");
-                                                  $val = "{$name} &lt;{$email}&gt;";
+                                                  $val = "{$name}\r\n&lt;{$email}&gt;";
+                                                  echo "<td class='item_{$key} itd_{$obj->id}'>{$val}</th>";
                                                   break;
                                                 case 'action':
                                                   $val = "<a href='javascript:;' title='".esc_attr__("Delete this specific submition", $this->td)."' class=\"button delete_item\" data-lid='{$obj->id}' ><span class='dashicons dashicons-trash'></span></a>
                                                   <span class='spinner loading_{$obj->id}'></span>";
+                                                  echo "<td class='item_{$key} itd_{$obj->id}'>{$val}</th>";
                                                   break;
 
                                                 default:
@@ -513,15 +559,17 @@ if (!class_exists("cf7Database")) {
                                                     $data = "";
                                                   }
                                                   if (is_array($data)){
-                                                    // foreach ($data as $key => $value) {
-                                                    //   $dataTmp .= "$key => $value\r\n";
-                                                    // }
                                                     $data = implode(",\r\n", $data);
                                                   }
                                                   $val = esc_html($data);
+                                                  if (substr( $val, 0, strlen("FILEURL:") ) === "FILEURL:"){
+                                                    $val = substr($val, strlen("FILEURL:"));
+                                                    $name = pathinfo($val, PATHINFO_FILENAME);
+                                                    $val = "<a href='$val' target='_blank'>$name</a><span style='font-size:0;'> [$val]</span>";
+                                                  }
+                                                  echo "<td class='item_{$key} itd_{$obj->id}'><pre>{$val}</pre></th>";
                                                   break;
                                               }
-                                          echo "<td class='item_{$key} itd_{$obj->id}'><pre>{$val}</pre></th>";
                                         }
                                         echo "</tr>";
                                       }

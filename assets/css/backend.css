@@ -120,7 +120,7 @@ pre::nth-line(n)::before {
 	margin-right: -20px !important;
 }
 
-[dir=ltr] .jconfirm-box {
+[dir=rtl] .jconfirm-box {
 	font-family: bodyfont !important;
 }
 
@@ -296,3 +296,27 @@ tr.highlight {
 .dark-edition tr.highlight {
 	background: #f2f287 !important;
 }
+
+.jconfirm.jconfirm-modern .jconfirm-box .jconfirm-buttons button {
+	min-width: 150px;
+}
+
+
+[dir=rtl] table.dataTable thead .sorting,
+[dir=rtl] table.dataTable thead .sorting_desc,
+[dir=rtl] table.dataTable thead .sorting_asc {
+	background-position: left;
+}
+
+pre {
+		overflow-x: auto;
+		white-space: pre-wrap;
+		white-space: -moz-pre-wrap;
+		white-space: -pre-wrap;
+		white-space: -o-pre-wrap;
+		word-wrap: break-word;
+ }
+
+ th.th-action {
+ 	width: 70px !important;
+ }
