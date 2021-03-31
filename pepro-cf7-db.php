@@ -9,10 +9,10 @@ Developer: Amirhosseinhpv
 Author URI: https://pepro.dev/
 Developer URI: https://hpv.im/
 Plugin URI: https://pepro.dev/cf7-database/
-Version: 1.2.0
-Stable tag: 1.2.0
+Version: 1.3.0
+Stable tag: 1.3.0
 Requires at least: 5.0
-Tested up to: 5.5
+Tested up to: 5.7
 Requires PHP: 5.6
 Text Domain: cf7db
 Domain Path: /languages
@@ -58,7 +58,7 @@ if (!class_exists("cf7Database")) {
             $this->plugin_basename = plugin_basename(__FILE__);
             $this->url = admin_url("admin.php?page={$this->db_slug}");
             $this->plugin_file = __FILE__;
-            $this->version = "1.2.0";
+            $this->version = "1.3.0";
             $this->deactivateURI = null;
             $this->deactivateICON = '<span style="font-size: larger; line-height: 1rem; display: inline; vertical-align: text-top;" class="dashicons dashicons-dismiss" aria-hidden="true"></span> ';
             $this->versionICON = '<span style="font-size: larger; line-height: 1rem; display: inline; vertical-align: text-top;" class="dashicons dashicons-admin-plugins" aria-hidden="true"></span> ';
@@ -536,7 +536,7 @@ if (!class_exists("cf7Database")) {
                                                   echo "<td class='item_{$key} itd_{$obj->id}'>{$val}</th>";
                                                   break;
                                                 case 'date_created':
-                                                  $val = "<p>". date_i18n( get_option('date_format'), $obj->date_created ) . "</p><p>" . date_i18n( get_option('time_format'), $obj->date_created )."</p>";
+                                                  $val = "<p>". date_i18n( get_option('date_format'), strtotime($obj->date_created) ) . "</p><p>" . date_i18n( get_option('time_format'), strtotime($obj->date_created) )."</p>";
                                                   echo "<td class='item_{$key} itd_{$obj->id}'>{$val}</th>";
                                                   break;
                                                 case 'your-email':
