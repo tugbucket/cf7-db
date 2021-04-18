@@ -9,8 +9,8 @@ Developer: Amirhosseinhpv
 Author URI: https://pepro.dev/
 Developer URI: https://hpv.im/
 Plugin URI: https://pepro.dev/cf7-database/
-Version: 1.3.0
-Stable tag: 1.3.0
+Version: 1.4.0
+Stable tag: 1.4.0
 Requires at least: 5.0
 Tested up to: 5.7
 Requires PHP: 5.6
@@ -19,6 +19,7 @@ Domain Path: /languages
 Copyright: (c) 2020 Pepro Dev. Group, All rights reserved.
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
+# @Last modified time: 2021/04/18 18:30:39
 */
 defined("ABSPATH") or die("CF7 Database :: Unauthorized Access!");
 
@@ -58,7 +59,7 @@ if (!class_exists("cf7Database")) {
             $this->plugin_basename = plugin_basename(__FILE__);
             $this->url = admin_url("admin.php?page={$this->db_slug}");
             $this->plugin_file = __FILE__;
-            $this->version = "1.3.0";
+            $this->version = "1.4.0";
             $this->deactivateURI = null;
             $this->deactivateICON = '<span style="font-size: larger; line-height: 1rem; display: inline; vertical-align: text-top;" class="dashicons dashicons-dismiss" aria-hidden="true"></span> ';
             $this->versionICON = '<span style="font-size: larger; line-height: 1rem; display: inline; vertical-align: text-top;" class="dashicons dashicons-admin-plugins" aria-hidden="true"></span> ';
@@ -90,9 +91,10 @@ if (!class_exists("cf7Database")) {
             $contact_form = WPCF7_ContactForm::get_current();
             $contact_form_id = $contact_form->id();
 
+
             if ($uploaded_files = $form_to_DB->uploaded_files()) {
                 foreach ($uploaded_files as $fieldName => $filepath) {
-                    $data = $this->save_cf7_attachment($filepath, $contact_form_id);
+                    $data = $this->save_cf7_attachment($filepath, $fieldName, $contact_form_id);
                     $formData[$fieldName] = "FILEURL:$data";
                 }
             }
@@ -104,12 +106,13 @@ if (!class_exists("cf7Database")) {
             $this->save_submition($subject, $name, $email, $details, $extra_info);
           }
         }
-        protected function save_cf7_attachment($filename,$postID)
+        protected function save_cf7_attachment($filename, $fieldName, $postID)
         {
+            $filename = $filename[0];
             // Check the type of file. We'll use this as the 'post_mime_type'.
             $filetype = wp_check_filetype(basename($filename), null);
             // Get the path to the upload directory.
-            $filenameNew = pathinfo($filename, PATHINFO_FILENAME) . "--". date_i18n( "Y-m-d-H-i-s",current_time( "timestamp" ) ) . ".{$filetype['ext']}";
+            $filenameNew = "$fieldName--". date_i18n( "Y-m-d-H-i-s",current_time( "timestamp" ) ) . ".{$filetype['ext']}";
             $wp_upload_dir = wp_upload_dir();
             $attachFileName = $wp_upload_dir['path'] . '/' . $filenameNew;
             copy($filename, $attachFileName);
@@ -960,6 +963,6 @@ if (!class_exists("cf7Database")) {
         }
     );
 }
-    /*################################################################################
-    END OF PLUGIN || Programming is art // Artist : Amirhosseinhpv [https://hpv.im/]
-    // */
+/*##################################################
+Lead Developer: [amirhosseinhpv](https://hpv.im/)
+##################################################*/
