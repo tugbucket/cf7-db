@@ -1,3 +1,12 @@
+/**
+ * @Author: Amirhosseinhpv
+ * @Date:   2020/08/18 21:02:11
+ * @Email:  its@hpv.im
+ * @Last modified by:   Amirhosseinhpv
+ * @Last modified time: 2021/05/19 18:35:36
+ * @License: GPLv2
+ * @Copyright: Copyright © 2020 Amirhosseinhpv, All rights reserved.
+ */
 @font-face {
 	font-family: bodyfont;
 	font-style: normal;
@@ -17,6 +26,7 @@
 	width: auto;
 	min-width: 250px;
 }
+
 @media only screen and (max-width: 960px) {
 	.form-table tr {
 		display: block;
@@ -34,20 +44,6 @@
 		padding-top: 4px;
 		padding-right: 0;
 	}
-	/* dev > h4 {
-    	position: absolute;
-      width: calc(100%) !important;
-    }
-    .caqpde{
-      min-width: 1200px;
-      margin-top: 6rem !important;
-    }
-    dev {
-    	overflow-x: scroll;
-    	overflow-y: hidden;
-    	display: block !important;
-    } */
-	;
 }
 
 .form-table td {
@@ -205,12 +201,6 @@ hr.hr2 {
 	user-select: none;
 }
 
-ul#adminmenu > li.current > a.current::after,
-ul#adminmenu a.wp-has-current-submenu::after {
-	/* border-left-color: transparent; */
-	;
-}
-
 .r180 {
 	transform: rotate(180deg);
 }
@@ -264,11 +254,34 @@ table:not(.exported_data) tbody {
 	line-height: 2;
 }
 
-@-webkit-keyframes slide-in-top{0%{transform:translateY(-1000px);opacity:0}100%{transform:translateY(0);opacity:1}}@keyframes slide-in-top{0%{transform:translateY(-1000px);opacity:0}100%{transform:translateY(0);opacity:1}}
+@-webkit-keyframes slide-in-top {
+	0% {
+		transform: translateY(-1000px);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+@keyframes slide-in-top {
+	0% {
+		transform: translateY(-1000px);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
 
 tr.highlight {
 	background: #ffff0070 !important;
 }
+
 .dark-edition tr.highlight {
 	background: #f2f287 !important;
 }
@@ -277,22 +290,131 @@ tr.highlight {
 	min-width: 150px;
 }
 
-
 [dir=rtl] table.dataTable thead .sorting,
-[dir=rtl] table.dataTable thead .sorting_desc,
-[dir=rtl] table.dataTable thead .sorting_asc {
+[dir=rtl] table.dataTable thead .sorting_asc,
+[dir=rtl] table.dataTable thead .sorting_desc {
 	background-position: left;
 }
 
 pre {
-		overflow-x: auto;
-		white-space: pre-wrap;
-		white-space: -moz-pre-wrap;
-		white-space: -pre-wrap;
-		white-space: -o-pre-wrap;
-		word-wrap: break-word;
- }
+	overflow-x: auto;
+	white-space: pre-wrap;
+	white-space: -moz-pre-wrap;
+	white-space: -pre-wrap;
+	white-space: -o-pre-wrap;
+	word-wrap: break-word;
+}
 
- th.th-action {
- 	width: 70px !important;
- }
+th.th-action {
+	width: 70px !important;
+}
+
+caution {
+	margin: 1rem auto;
+	background: #ac0303;
+	padding: 1.5rem 0;
+	font-weight: 900;
+	display: block;
+	position: relative;
+	text-align: start;
+	max-width: 800px;
+	-webkit-padding-start: 4rem;
+	padding-inline-start: 4rem;
+	border-radius: 4px;
+	color: white;
+	box-shadow: 0 2px 4px 0 #00000078;
+}
+
+caution .dashicons.dashicons-warning {
+	color: yellow;
+	-webkit-margin-end: 1rem;
+	margin-inline-end: 1rem;
+	font-size: xxx-large;
+	position: absolute;
+	left: 0.5rem;
+	top: 0.5rem;
+}
+
+div.notice {
+	-webkit-margin-start: 0;
+	margin-inline-start: 0;
+	position: relative;
+}
+
+.sechme {
+	cursor: alias;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+#exported_data_filter input[type=search] {
+	width: 20rem;
+}
+
+.fixedHeader-floating thead {
+	position: relative;
+	top: 2rem;
+}
+
+table {
+	border: solid #ccc 1px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+}
+
+table tr:hover {
+	background: #fbf8e9;
+	transition: all 0.1s ease-in-out;
+}
+
+table td,
+table th {
+	border-left: 1px solid #ccc;
+	border-top: 1px solid #ccc;
+	padding: 10px;
+	text-align: left;
+}
+
+table th {
+	background-color: #dce9f9;
+	background-image: linear-gradient(to top, #ebf3fc, #dce9f9);
+	border-top: none;
+	text-shadow: 0 1px 0 rgba(255,255,255,.5);
+}
+
+table td,
+table th {
+	text-align: center;
+}
+
+.pagination > ul {
+	margin: 0 !important;
+	padding: 0 !important;
+	cursor: default;
+}
+
+.pagination > ul > li {
+	display: inline-block;
+	padding: 4px;
+	margin: 0 !important;
+}
+
+.pagination {
+	text-align: center;
+	display: inline;
+}
+
+.pagination > ul > li > a.page-numbers,
+.pagination > ul > li > span.current {
+	display: block;
+	height: auto;
+}
+
+.pagination > ul > li > span.current * {
+	color: gray;
+	border-color: gray;
+	pointer-events: none;
+}
