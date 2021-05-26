@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CF7 Database\n"
 "POT-Creation-Date: 2021-05-19 19:54+0430\n"
-"PO-Revision-Date: 2021-05-19 20:03+0430\n"
+"PO-Revision-Date: 2021-05-19 20:24+0430\n"
 "Last-Translator: Amirhosseinhpv <amirhossein@hpv.im>\n"
 "Language-Team: Amirhosseinhpv <amirhossein@hpv.im>\n"
 "Language: fa_IR\n"
@@ -42,7 +42,7 @@ msgstr "افزونه ای قابل اعتماد برای ذخیره فرم ها�
 
 #: pepro-cf7-db.php:99 pepro-cf7-db.php:107
 msgid "Saved Submission"
-msgstr "داده هایپ ثبت شده"
+msgstr "داده های ثبت شده"
 
 #: pepro-cf7-db.php:100
 msgid "All CF7 Databases"
