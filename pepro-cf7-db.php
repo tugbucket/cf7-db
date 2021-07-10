@@ -9,8 +9,8 @@ Developer: Amirhosseinhpv
 Author URI: https://pepro.dev/
 Developer URI: https://hpv.im/
 Plugin URI: https://pepro.dev/cf7-database/
-Version: 1.5.0
-Stable tag: 1.5.0
+Version: 1.5.1
+Stable tag: 1.5.1
 Requires at least: 5.0
 Tested up to: 5.7.2
 Requires PHP: 5.6
@@ -70,6 +70,7 @@ if (!class_exists("cf7Database")) {
       $this->title2 = __("Pepro CF7 Database", $this->td);
       $this->title_w = sprintf(__("%2\$s ver. %1\$s", $this->td), $this->version, $this->title);
       add_action("init", array($this, 'init_plugin'));
+	  $this->CreateDatabase();
     }
     public function init_plugin()
     {
@@ -85,6 +86,7 @@ if (!class_exists("cf7Database")) {
 
       add_action("wp_ajax_nopriv_cf7db_{$this->td}", array($this, 'handel_ajax_req'));
       add_action("wp_ajax_cf7db_{$this->td}", array($this, 'handel_ajax_req'));
+	  
     }
     public function wpcf7_admin_footer($post)
     {
