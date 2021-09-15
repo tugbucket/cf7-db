@@ -202,7 +202,7 @@ if (!class_exists("cf7Database")) {
       wp_add_inline_style($f,"
       #footer-left b a::before { content: ''; background: url('{$this->assets_url}/images/peprodev.svg') no-repeat; background-position-x: center; background-position-y: center; background-size: contain; width: 60px; height: 40px; display: inline-block; pointer-events: none; position: absolute; -webkit-margin-before: calc(-60px + 1rem); margin-block-start: calc(-60px + 1rem); -webkit-filter: opacity(0.0);
       filter: opacity(0.0); transition: all 0.3s ease-in-out; }#footer-left b a:hover::before { -webkit-filter: opacity(1.0); filter: opacity(1.0); transition: all 0.3s ease-in-out; }[dir=rtl] #footer-left b a::before {margin-inline-start: calc(30px);}
-      .notice.notice-success.peproicon::after { top: 0; left: 0; content: ''; transition: all 0.3s ease-in-out; background: url('{$this->assets_url}/images/peprodev.svg') center right/contain no-repeat; pointer-events: none; position: absolute; display: block; width: 100%; height: 100%; }
+      .notice.notice-success.peproicon::after { top: 0; opacity: 0.3; left: 0; content: ''; transition: all 0.3s ease-in-out; background: url('{$this->assets_url}/images/peprodev.svg') center right/contain no-repeat; pointer-events: none; position: absolute; display: block; width: 100%; height: 100%; }
       [dir=rtl] .notice.notice-success.peproicon::after { background-position-x: left; }");
       wp_enqueue_style($f);
       add_filter( 'admin_footer_text', function () { return sprintf(_x("Thanks for using %s products", "footer-copyright", $this->td), "<b><a href='https://pepro.dev/' target='_blank' >".__("Pepro Dev", $this->td)."</a></b>");}, 11000 );
