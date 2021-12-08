@@ -3,4 +3,4 @@
 
 ##### **Developed by** [Perpro Development Group](https://pepro.dev/)
 
-*Current Version: 1.5.1* \| *Lead Programmer:* [Amirhosseinhpv](https://hpv.im/)
+*Current Version: 1.5.2* \| *Lead Programmer:* [Amirhosseinhpv](https://hpv.im/)

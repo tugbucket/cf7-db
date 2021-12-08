@@ -3,13 +3,13 @@ Contributors: peprodev,amirhosseinhpv
 Donate link: https://pepro.dev/donate
 Tags: contact form 7, cf7, cf7 database, contact form 7 database, save cf7 files, save contact form 7 uploads
 Requires at least: 5.0
-Tested up to: 5.7.2
-Stable tag: 1.5.1
+Tested up to: 5.8
+Stable tag: 1.5.2
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Reliable Solution to Save CF7 Submissions and Files, Works with CF7 v.5.4+
+Reliable Solution to Save CF7 Submissions and Files, Works with CF7 v.5.5+
 
 == Description ==
 
@@ -77,9 +77,11 @@ You can help us improve our works by committing your changes to Pepro Dev's Gith
 == Changelog ==
 
 
-= 1.5.1 =
+= 1.5.2 =
 
--   FIX: In some Servers, Database is not created
+-   In some hosting, database is not created
+-   Compatibility with Contact Form 7 version 5.5
+-   Added wp-admin/?force-cf7db to force re-generate database
 
 = 1.5.0 =
 
@@ -128,9 +130,11 @@ Join us at [https://pepro.dev/](https://pepro.dev/) and also don't forget to che
 
 == Upgrade Notice ==
 
-= 1.5.1 =
+= 1.5.2 =
 
--   FIX: In some Servers, Database is not created
+-   In some hosting, database is not created
+-   Compatibility with Contact Form 7 version 5.5
+-   Added wp-admin/?force-cf7db to force re-generate database
 
 = 🔥 Version 1.5.0 | 2021-05-19 - 1400/02/29 =
 

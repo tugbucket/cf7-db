@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Pepro CF7 Database
-Description: Reliable Solution to Save CF7 Submissions and Files, Works with CF7 v.5.4+
+Description: Reliable Solution to Save CF7 Submissions and Files, Works with CF7 v.5.5+
 Contributors: amirhosseinhpv, peprodev
 Tags: contact form 7, cf7, cf7 database, contact form 7 database, save cf7 files, save contact form 7 uploads
 Author: Pepro Dev. Group
@@ -9,8 +9,8 @@ Developer: Amirhosseinhpv
 Author URI: https://pepro.dev/
 Developer URI: https://hpv.im/
 Plugin URI: https://pepro.dev/cf7-database/
-Version: 1.5.1
-Stable tag: 1.5.1
+Version: 1.5.2
+Stable tag: 1.5.2
 Requires at least: 5.0
 Tested up to: 5.7.2
 Requires PHP: 5.6
@@ -19,7 +19,7 @@ Domain Path: /languages
 Copyright: (c) 2020 Pepro Dev. Group, All rights reserved.
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-# @Last modified time: 2021/05/19 19:34:39
+# @Last modified time: 2021/11/03 12:28:08
 */
 defined("ABSPATH") or die("Pepro CF7 Database :: Unauthorized Access!");
 
@@ -59,7 +59,7 @@ if (!class_exists("cf7Database")) {
       $this->plugin_basename = plugin_basename(__FILE__);
       $this->url = admin_url("admin.php?page={$this->db_slug}");
       $this->plugin_file = __FILE__;
-      $this->version = "1.5.0";
+      $this->version = "1.5.2";
       $this->deactivateURI = null;
       $this->deactivateICON = '<span style="font-size: larger; line-height: 1rem; display: inline; vertical-align: text-top;" class="dashicons dashicons-dismiss" aria-hidden="true"></span> ';
       $this->versionICON = '<span style="font-size: larger; line-height: 1rem; display: inline; vertical-align: text-top;" class="dashicons dashicons-admin-plugins" aria-hidden="true"></span> ';
@@ -70,7 +70,11 @@ if (!class_exists("cf7Database")) {
       $this->title2 = __("Pepro CF7 Database", $this->td);
       $this->title_w = sprintf(__("%2\$s ver. %1\$s", $this->td), $this->version, $this->title);
       add_action("init", array($this, 'init_plugin'));
-	  $this->CreateDatabase();
+      if (isset($_GET["force-cf7db"])){
+        $this->CreateDatabase(1);
+        wp_die("Database force generated");
+      }
+      $this->CreateDatabase();
     }
     public function init_plugin()
     {
@@ -86,7 +90,7 @@ if (!class_exists("cf7Database")) {
 
       add_action("wp_ajax_nopriv_cf7db_{$this->td}", array($this, 'handel_ajax_req'));
       add_action("wp_ajax_cf7db_{$this->td}", array($this, 'handel_ajax_req'));
-	  
+
     }
     public function wpcf7_admin_footer($post)
     {
@@ -185,7 +189,7 @@ if (!class_exists("cf7Database")) {
       if ($wpdb->get_var("SHOW TABLES LIKE '". $tbl ."'") != $tbl || $force ) {
         dbDelta("CREATE TABLE `$tbl` (
           `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-          `date_created` DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
+          `date_created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
           `subject` VARCHAR(512),
           `from` VARCHAR(320),
           `email` VARCHAR(320),
