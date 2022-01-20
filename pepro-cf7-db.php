@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Pepro CF7 Database
+Plugin Name: PeproDev CF7 Database
 Description: Reliable Solution to Save CF7 Submissions and Files, Works with CF7 v.5.5+
 Contributors: amirhosseinhpv, peprodev
 Tags: contact form 7, cf7, cf7 database, contact form 7 database, save cf7 files, save contact form 7 uploads
@@ -9,8 +9,8 @@ Developer: Amirhosseinhpv
 Author URI: https://pepro.dev/
 Developer URI: https://hpv.im/
 Plugin URI: https://pepro.dev/cf7-database/
-Version: 1.5.2
-Stable tag: 1.5.2
+Version: 1.6.0
+Stable tag: 1.6.0
 Requires at least: 5.0
 Tested up to: 5.7.2
 Requires PHP: 5.6
@@ -19,7 +19,7 @@ Domain Path: /languages
 Copyright: (c) 2020 Pepro Dev. Group, All rights reserved.
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-# @Last modified time: 2021/11/03 12:28:08
+# @Last modified time: 2022/01/09 05:47:27
 */
 defined("ABSPATH") or die("Pepro CF7 Database :: Unauthorized Access!");
 
@@ -59,7 +59,7 @@ if (!class_exists("cf7Database")) {
       $this->plugin_basename = plugin_basename(__FILE__);
       $this->url = admin_url("admin.php?page={$this->db_slug}");
       $this->plugin_file = __FILE__;
-      $this->version = "1.5.2";
+      $this->version = "1.6.0";
       $this->deactivateURI = null;
       $this->deactivateICON = '<span style="font-size: larger; line-height: 1rem; display: inline; vertical-align: text-top;" class="dashicons dashicons-dismiss" aria-hidden="true"></span> ';
       $this->versionICON = '<span style="font-size: larger; line-height: 1rem; display: inline; vertical-align: text-top;" class="dashicons dashicons-admin-plugins" aria-hidden="true"></span> ';
@@ -139,10 +139,13 @@ if (!class_exists("cf7Database")) {
     protected function save_cf7_attachment($filename, $fieldName, $postID)
     {
       $filename = $filename[0];
+      if (!$filename) return false;
       // Check the type of file. We'll use this as the 'post_mime_type'.
       $filetype = wp_check_filetype(basename($filename), null);
       // Get the path to the upload directory.
-      $filenameNew = "$fieldName--". date_i18n( "Y-m-d-H-i-s",current_time( "timestamp" ) ) . ".{$filetype['ext']}";
+      remove_all_filters("wp_date");
+      remove_all_filters("date_i18n");
+      $filenameNew = uniqid($fieldName."-")."-".date_i18n("Y-m-d-H-i-s", current_time("timestamp")).".".$filetype['ext'];
       $wp_upload_dir = wp_upload_dir();
       $attachFileName = $wp_upload_dir['path'] . '/' . $filenameNew;
       copy($filename, $attachFileName);
@@ -169,6 +172,7 @@ if (!class_exists("cf7Database")) {
         $getManageLinks = array(
           __("Support", $this->td) => "mailto:support@pepro.dev?subject={$this->title}",
           __("CF7 Submissions", $this->td) => $this->url,
+          __("Force Re-generate Database", $this->td) => admin_url("?force-cf7db"),
         );
         foreach ($getManageLinks as $title => $href) {
           array_unshift($links, "<a href='$href' target='_self'>$title</a>");

@@ -1,10 +1,10 @@
-=== Pepro CF7 Database ===
+=== PeproDev CF7 Database ===
 Contributors: peprodev,amirhosseinhpv
 Donate link: https://pepro.dev/donate
 Tags: contact form 7, cf7, cf7 database, contact form 7 database, save cf7 files, save contact form 7 uploads
 Requires at least: 5.0
 Tested up to: 5.8
-Stable tag: 1.5.2
+Stable tag: 1.6.0
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -77,6 +77,11 @@ You can help us improve our works by committing your changes to Pepro Dev's Gith
 == Changelog ==
 
 
+= 1.6.0 =
+
+-   Enhanced file saving process
+-   Added force re-generate database link to plugin meta
+
 = 1.5.2 =
 
 -   In some hosting, database is not created
@@ -129,6 +134,12 @@ Join us at [https://pepro.dev/](https://pepro.dev/) and also don't forget to che
 
 
 == Upgrade Notice ==
+
+= 1.6.0 =
+
+-   Enhanced file saving process
+-   Added force re-generate database link to plugin meta
+
 
 = 1.5.2 =
 
