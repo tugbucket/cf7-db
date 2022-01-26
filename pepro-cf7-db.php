@@ -12,7 +12,7 @@ Plugin URI: https://pepro.dev/cf7-database/
 Version: 1.6.0
 Stable tag: 1.6.0
 Requires at least: 5.0
-Tested up to: 5.7.2
+Tested up to: 5.9
 Requires PHP: 5.6
 Text Domain: cf7db
 Domain Path: /languages

@@ -3,7 +3,7 @@ Contributors: peprodev,amirhosseinhpv
 Donate link: https://pepro.dev/donate
 Tags: contact form 7, cf7, cf7 database, contact form 7 database, save cf7 files, save contact form 7 uploads
 Requires at least: 5.0
-Tested up to: 5.8
+Tested up to: 5.9
 Stable tag: 1.6.0
 Requires PHP: 5.6
 License: GPLv2 or later
