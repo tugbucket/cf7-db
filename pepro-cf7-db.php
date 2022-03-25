@@ -9,14 +9,14 @@ Developer: Amirhosseinhpv
 Author URI: https://pepro.dev/
 Developer URI: https://hpv.im/
 Plugin URI: https://pepro.dev/cf7-database/
-Version: 1.6.0
-Stable tag: 1.6.0
+Version: 1.7.0
+Stable tag: 1.7.0
 Requires at least: 5.0
-Tested up to: 5.9
+Tested up to: 5.9.2
 Requires PHP: 5.6
 Text Domain: cf7db
 Domain Path: /languages
-Copyright: (c) 2020 Pepro Dev. Group, All rights reserved.
+Copyright: (c) 2022 Pepro Dev. Group, All rights reserved.
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 # @Last modified time: 2022/01/09 05:47:27
@@ -49,30 +49,30 @@ if (!class_exists("cf7Database")) {
     public function __construct()
     {
       global $wpdb;
-      $this->td = "cf7db";
-      self::$_instance = $this;
-      $this->db_slug = $this->td;
-      $this->db_table = $wpdb->prefix . $this->db_slug;
-      $this->plugin_dir = plugin_dir_path(__FILE__);
-      $this->plugin_url = plugins_url("", __FILE__);
-      $this->assets_url = plugins_url("/assets/", __FILE__);
+      $this->td              = "cf7db";
+      self::$_instance       = $this;
+      $this->db_slug         = $this->td;
+      $this->db_table        = $wpdb->prefix . $this->db_slug;
+      $this->plugin_dir      = plugin_dir_path(__FILE__);
+      $this->plugin_url      = plugins_url("", __FILE__);
+      $this->assets_url      = plugins_url("/assets/", __FILE__);
       $this->plugin_basename = plugin_basename(__FILE__);
-      $this->url = admin_url("admin.php?page={$this->db_slug}");
-      $this->plugin_file = __FILE__;
-      $this->version = "1.6.0";
-      $this->deactivateURI = null;
-      $this->deactivateICON = '<span style="font-size: larger; line-height: 1rem; display: inline; vertical-align: text-top;" class="dashicons dashicons-dismiss" aria-hidden="true"></span> ';
-      $this->versionICON = '<span style="font-size: larger; line-height: 1rem; display: inline; vertical-align: text-top;" class="dashicons dashicons-admin-plugins" aria-hidden="true"></span> ';
-      $this->authorICON = '<span style="font-size: larger; line-height: 1rem; display: inline; vertical-align: text-top;" class="dashicons dashicons-admin-users" aria-hidden="true"></span> ';
-      $this->settingURL = '<span style="display: inline;float: none;padding: 0;" class="dashicons dashicons-admin-settings dashicons-small" aria-hidden="true"></span> ';
-      $this->submitionURL = '<span style="display: inline;float: none;padding: 0;" class="dashicons dashicons-images-alt dashicons-small" aria-hidden="true"></span> ';
-      $this->title = __("CF7 Database", $this->td);
-      $this->title2 = __("Pepro CF7 Database", $this->td);
-      $this->title_w = sprintf(__("%2\$s ver. %1\$s", $this->td), $this->version, $this->title);
+      $this->url             = admin_url("admin.php?page={$this->db_slug}");
+      $this->plugin_file     = __FILE__;
+      $this->version         = "1.7.0";
+      $this->deactivateURI   = null;
+      $this->deactivateICON  = '<span style="font-size: larger; line-height: 1rem; display: inline; vertical-align: text-top;" class="dashicons dashicons-dismiss" aria-hidden="true"></span> ';
+      $this->versionICON     = '<span style="font-size: larger; line-height: 1rem; display: inline; vertical-align: text-top;" class="dashicons dashicons-admin-plugins" aria-hidden="true"></span> ';
+      $this->authorICON      = '<span style="font-size: larger; line-height: 1rem; display: inline; vertical-align: text-top;" class="dashicons dashicons-admin-users" aria-hidden="true"></span> ';
+      $this->settingURL      = '<span style="display: inline;float: none;padding: 0;" class="dashicons dashicons-admin-settings dashicons-small" aria-hidden="true"></span> ';
+      $this->submitionURL    = '<span style="display: inline;float: none;padding: 0;" class="dashicons dashicons-images-alt dashicons-small" aria-hidden="true"></span> ';
+      $this->title           = __("CF7 Database", $this->td);
+      $this->title2          = __("Pepro CF7 Database", $this->td);
+      $this->title_w         = sprintf(__("%2\$s ver. %1\$s", $this->td), $this->version, $this->title);
       add_action("init", array($this, 'init_plugin'));
       if (isset($_GET["force-cf7db"])){
         $this->CreateDatabase(1);
-        wp_die("Database force generated");
+        wp_die("Database structure updated/regenerated.", $this->title, ["link_url"=> $this->url, "link_text"=> $this->title2, "back_link"=> true]);
       }
       $this->CreateDatabase();
     }
@@ -169,11 +169,7 @@ if (!class_exists("cf7Database")) {
     public function plugins_row_links($links)
     {
       if (isset($links["deactivate"])){
-        $getManageLinks = array(
-          __("Support", $this->td) => "mailto:support@pepro.dev?subject={$this->title}",
-          __("CF7 Submissions", $this->td) => $this->url,
-          __("Force Re-generate Database", $this->td) => admin_url("?force-cf7db"),
-        );
+        $getManageLinks = array( __("Support", $this->td) => "mailto:support@pepro.dev?subject={$this->title}", );
         foreach ($getManageLinks as $title => $href) {
           array_unshift($links, "<a href='$href' target='_self'>$title</a>");
         }
@@ -210,8 +206,8 @@ if (!class_exists("cf7Database")) {
       wp_add_inline_style($f,"
       #footer-left b a::before { content: ''; background: url('{$this->assets_url}/images/peprodev.svg') no-repeat; background-position-x: center; background-position-y: center; background-size: contain; width: 60px; height: 40px; display: inline-block; pointer-events: none; position: absolute; -webkit-margin-before: calc(-60px + 1rem); margin-block-start: calc(-60px + 1rem); -webkit-filter: opacity(0.0);
       filter: opacity(0.0); transition: all 0.3s ease-in-out; }#footer-left b a:hover::before { -webkit-filter: opacity(1.0); filter: opacity(1.0); transition: all 0.3s ease-in-out; }[dir=rtl] #footer-left b a::before {margin-inline-start: calc(30px);}
-      .notice.notice-success.peproicon::after { top: 0; opacity: 0.3; left: 0; content: ''; transition: all 0.3s ease-in-out; background: url('{$this->assets_url}/images/peprodev.svg') center right/contain no-repeat; pointer-events: none; position: absolute; display: block; width: 100%; height: 100%; }
-      [dir=rtl] .notice.notice-success.peproicon::after { background-position-x: left; }");
+      .notice.peproicon::after { top: 0; opacity: 0.3; left: 0; content: ''; transition: all 0.3s ease-in-out; background: url('{$this->assets_url}/images/peprodev.svg') calc(100% - 1rem) center/4rem no-repeat; pointer-events: none; position: absolute; display: block; width: 100%; height: 100%; }
+      [dir=rtl] .notice.peproicon::after { background-position-x: 1rem center/4rem no-repeat; }");
       wp_enqueue_style($f);
       add_filter( 'admin_footer_text', function () { return sprintf(_x("Thanks for using %s products", "footer-copyright", $this->td), "<b><a href='https://pepro.dev/' target='_blank' >".__("Pepro Dev", $this->td)."</a></b>");}, 11000 );
       add_filter( 'update_footer', function () { return sprintf(_x("%s — Version %s", "footer-copyright", $this->td), $this->title, $this->version); }, 1100 );
@@ -361,33 +357,33 @@ if (!class_exists("cf7Database")) {
       wp_enqueue_script("{$this->db_slug}");
       $title = $this->title; $select = "";
       $posts = get_posts( array( 'post_type' => 'wpcf7_contact_form', 'numberposts' => -1 ) );
-      foreach ( $posts as $p ) { $select .= "<a style='margin-inline-end: 0.5rem;' class='button dt-button hrefbtn' href='{$this->url}&cf7=$p->ID' title='$p->post_title (ID #$p->ID)'>$p->post_title</a>"; }
+      foreach ( $posts as $p ) { $select .= "&nbsp;<a style='margin-inline-end: 0.5rem;' class='dt-button hrefbtn' href='{$this->url}&cf7=$p->ID' title='$p->post_title (ID #$p->ID)'>$p->post_title</a>"; }
       if (!$cf7 || 0 == $cf7){
-        echo "<br>
-        <div class='notice notice-success peproicon'>
-        <h1><strong>".__("Pepro CF7 Database",$this->td)."</strong></h1>
-        <h3>".__("A Reliable Solution to Save Contact Form 7 Submissions and Files",$this->td)."</h2>
-        <p>".sprintf(__("This plugin is proudly developed by %s for FREE, you can support us by giving a %s in WordPress",$this->td), "<a href='https://pepro.dev/' target='_blank' >".__("Pepro Dev", $this->td)."</a>", "<a href='https://wordpress.org/support/plugin/pepro-cf7-database/reviews/#new-post' target='_blank'>".__("five-star review",$this->td)."</a>")."</p>
+        echo "<br><div class='notice notice-success peproicon'>
+          <h1><strong>".__("Pepro CF7 Database",$this->td)."</strong></h1>
+            <p>".sprintf(__("This plugin is proudly developed by %s for FREE, you can support us by giving a %s in WordPress",$this->td),
+              "<a href='https://pepro.dev/' target='_blank' >".__("Pepro Dev", $this->td)."</a>",
+              "<a href='https://wordpress.org/support/plugin/pepro-cf7-database/reviews/#new-post' target='_blank'>".__("five-star review",$this->td)."</a>")."
+            </p>
+            <p>
+              <a class='dt-button hrefbtn' id='emptyDbNow' title='".esc_attr__("BE CAUTIOUS! ONCE YOU EMPTY THE DATABASE, THERE WILL BE NO WAY BACK!", $this->td)."' href='javascript:;'>"._x("Empty Database and All Saved Submission", "setting-general", $this->td)."</a>
+              <a class='dt-button hrefbtn' target='_self' href='".admin_url("?force-cf7db")."'>".__("Force Re-generate Database", $this->td)."</a>
+            </p>
         </div>
-        <br>
-        <div class='notice notice-warning'><p>".sprintf(__("As of ver. 1.5.0 of %s, Setting section removed and saved data will remain intact after uninstalling the plugin and you have to manually clear all data before uninstalling.", $this->td), "<strong>".__("Pepro CF7 Database Plugin",$this->td)."</strong>")."</p>
-        <p>".__("BE CAUTIOUS! ONCE YOU EMPTY THE DATABASE, THERE WILL BE NO WAY BACK!",$this->td)."</p>
-        <p><a class='button dt-button hrefbtn' id='emptyDbNow' href='javascript:;'>"._x("Empty Database and All Saved Submission", "setting-general", $this->td)."</a></p>
-        </div>
-        <br>
-        <div class='notice notice-info'>
-        <p>".__("To view Saved Submission, select a CF7 Form from below list:",$this->td)."</p>
-        <p>$select</p>
-        </div>
-        ";
+        <div class='notice notice-info'><p>".__("To view Saved Submission, select a CF7 Form from below list:",$this->td)."</p><p>$select</p></div>";
         return;
       }
       if ( 'publish' != get_post_status ( $cf7 ) ) {
-        echo "<h1 class='had'>$title</h1>";?>
-        <p style="text-align: center; display: block;">
-          <a class='button dt-button hrefbtn' href='<?="{$this->url}";?>'><?=__("Entered CF7 is not valid, Go back and select another Contact form",$this->td);?></a>
-        </p>
-        <?php
+        $breadcrumb = sprintf(__('You are here: %s → %s → %s', $this->td),
+                                  "<strong>".__("Pepro CF7 Database",$this->td)."</strong>",
+                                  "<a target='_self' href='$this->url'>".__("Contact Forms",$this->td)."</a>",
+                                  "<u>$cf7</u>"
+        );
+        echo "<br><div class='notice notice-error peproicon'>
+          <h1><strong>".__("Pepro CF7 Database",$this->td)."</strong></h1>
+          <p>$breadcrumb</p>
+          <p>".__("Entered CF7 is not valid, Go back and select another Contact form",$this->td)."</p>
+        </div>";
         return;
       }
 
@@ -411,28 +407,16 @@ if (!class_exists("cf7Database")) {
       <option disabled>-----------------</option>
       <option value='$total' " . selected($total, $post_per_page, false) . ">".sprintf(_n( "Show your only saved submition", "Show all %s items at once", $total, $this->td ), $total)."</option>
       </select>";
+      $emptynow = "";
+      if (!empty($wpdb->num_rows)){
+        $emptynow = "<a style='margin-inline-end: 0.5rem;' class='dt-button hrefbtn' id='emptySelectedCf7DB' href='javascript:;' data-rel='$cf7'>".__("Delete All Submission of Current Contact form",$this->td)."</a>";
+      }
+      $breadcrumb = sprintf(__('You are here: %s → %s → %s', $this->td),
+          "<strong>".__("Pepro CF7 Database",$this->td)."</strong>",
+          "<a target='_self' href='$this->url'>".__("Contact Forms",$this->td)."</a>",
+          "<a target='_self' href='".admin_url("admin.php?page=wpcf7&post=$cf7&action=edit")."'>$the_title</a>");
+      echo "<br><div class='notice notice-success peproicon'><h1><strong>".__("Pepro CF7 Database",$this->td)."</strong></h1><p>$breadcrumb</p>$emptynow</div>";
 
-      echo "<br>
-      <div class='notice notice-success peproicon'>
-      <h1><strong>".__("Pepro CF7 Database",$this->td)."</strong></h1>
-      <h3>".__("A Reliable Solution to Save Contact Form 7 Submissions and Files",$this->td)."</h2>
-      <p>".sprintf(__("This plugin is proudly developed by %s for FREE, you can support us by giving a %s in WordPress",$this->td), "<a href='https://pepro.dev/' target='_blank' >".__("Pepro Dev", $this->td)."</a>", "<a href='https://wordpress.org/support/plugin/pepro-cf7-database/reviews/#new-post' target='_blank'>".__("five-star review",$this->td)."</a>")."</p>
-      </div>
-      <br>";
-      ?>
-      <div class='notice notice-info'>
-        <p><?php printf(__('You are here: %s → %s → %s', $this->td), "<a target='_blank' href='https://wordpress.org/plugins/pepro-cf7-database/'>".__("Pepro CF7 Database",$this->td)."</a>", "<a target='_blank' href='$this->url'>".__("Contact Forms",$this->td)."</a>", "<a target='_blank' href='".admin_url("admin.php?page=wpcf7&post=$cf7&action=edit")."'>$the_title</a>"); ?></p>
-        <?php
-          if (!empty($wpdb->num_rows)){
-            ?>
-            <p><a style='margin-inline-end: 0.5rem;' class='button dt-button hrefbtn' id="emptySelectedCf7DB" href='javascript:;' data-rel="<?=$cf7;?>"><?=__("Delete All Submission of Current Contact form",$this->td);?></a></p>
-            <?php
-          }
-        ?>
-      </div>
-      <br>
-
-      <?php
       if (empty($wpdb->num_rows)){
         echo "<div class='notice notice-error'><p>".__("Failed Rendering Database! No data saved for this form yet.",$this->td)."</p></div>";
         $tcona = ob_get_contents();
@@ -441,148 +425,150 @@ if (!class_exists("cf7Database")) {
         return;
       }
       ?>
-      <div class="wrap">
-        <form action="<?php echo admin_url("admin.php?page=cf7db");?>" id='mainform' >
-          <input type="hidden" name="page" value="cf7db" />
-          <input type="hidden" name="num" value="<?=$page;?>" />
-          <input type="hidden" name="cf7" value="<?=$cf7;?>" />
-          <?php
-          if (!empty($wpdb->num_rows)) {
-            $header = array(
-              "_sharp_id"            =>  __('ID',$this->td),
-              "date_created"  =>  __('Date Created',$this->td),
-            );
-            foreach ( $res_obj as $obj ){
-              $data_array = unserialize($obj->details);
-              if (isset($data_array["your-email"]) && isset($data_array["your-name"])){
-                unset($data_array["your-name"]);
-                unset($data_array["your-email"]);
-                $header["your-email"] = __('From',$this->td);
-              }
-              if (isset($data_array["your-subject"])){
-                unset($data_array["your-subject"]);
-                $header["your-subject"] = __('Subject',$this->td);
-              }
-              if (isset($data_array["your-message"])){
-                unset($data_array["your-message"]);
-                $header["your-message"] = __('Message',$this->td);
-              }
-              foreach ( $data_array as $key => $value) {
-                $filter_header = apply_filters( "pepro_cf7db_filter_header", array(
-                  // "_wpcf7",
-                  // "_wpcf7_version",
-                  // "_wpcf7_locale",
-                  // "_wpcf7_unit_tag",
-                  // "_wpcf7_container_post",
-                  "g-recaptcha-response",
-                ));
-                if (!in_array($key, $filter_header)){
-                  if (!$this->startsWith($key, "_wpcf7")){
-                    $header[$key] = ucfirst(str_replace(array("-","_"), array(" "," "), $key));
+      <div class='notice notice-info'>
+        <div class="wrap">
+          <form action="<?php echo admin_url("admin.php?page=cf7db");?>" id='mainform' >
+            <input type="hidden" name="page" value="cf7db" />
+            <input type="hidden" name="num" value="<?=$page;?>" />
+            <input type="hidden" name="cf7" value="<?=$cf7;?>" />
+            <?php
+            if (!empty($wpdb->num_rows)) {
+              $header = array(
+                "_sharp_id"            =>  __('ID',$this->td),
+                "date_created"  =>  __('Date Created',$this->td),
+              );
+              foreach ( $res_obj as $obj ){
+                $data_array = unserialize($obj->details);
+                if (isset($data_array["your-email"]) && isset($data_array["your-name"])){
+                  unset($data_array["your-name"]);
+                  unset($data_array["your-email"]);
+                  $header["your-email"] = __('From',$this->td);
+                }
+                if (isset($data_array["your-subject"])){
+                  unset($data_array["your-subject"]);
+                  $header["your-subject"] = __('Subject',$this->td);
+                }
+                if (isset($data_array["your-message"])){
+                  unset($data_array["your-message"]);
+                  $header["your-message"] = __('Message',$this->td);
+                }
+                foreach ( $data_array as $key => $value) {
+                  $filter_header = apply_filters( "pepro_cf7db_filter_header", array(
+                    // "_wpcf7",
+                    // "_wpcf7_version",
+                    // "_wpcf7_locale",
+                    // "_wpcf7_unit_tag",
+                    // "_wpcf7_container_post",
+                    "g-recaptcha-response",
+                  ));
+                  if (!in_array($key, $filter_header)){
+                    if (!$this->startsWith($key, "_wpcf7")){
+                      $header[$key] = ucfirst(str_replace(array("-","_"), array(" "," "), $key));
+                    }
                   }
                 }
               }
-            }
-            $header["action"] = __('Action',$this->td);
-            $header = array_unique($header);
-            echo "
-            <p><b>". sprintf(_n( "Your very first saved submition is showing below", "%s Saved Submission found", $total, $this->td ), $total) . "</b>   {$items_per_page_selceter}</p>
-            <table border=\"1\" id=\"exported_data\" class=\"exported_data\">
-            <thead>
-            <tr>";
-            foreach ($header as $key => $value) {
-              $extraClass = "";
-              if (in_array($key, apply_filters( "pepro_cf7db_hide_col_from_export", array("action","_sharp_id")))){
-                $extraClass = "noExport";
-              }
-              echo "<th class='th-{$key} $extraClass'>{$value}</th>";
-            }
-            echo "
-            </tr>
-            </thead>
-            <tfoot>
-            <tr>";
-            foreach ($header as $key => $value) {
-              $extraClass = "";
-              if (in_array($key, apply_filters( "pepro_cf7db_hide_col_from_export", array("action","_sharp_id")))){
-                $extraClass = "noExport";
-              }
-              echo "<th class='th-{$key} $extraClass'>{$value}</th>";
-            }
-            echo "
-            </tr>
-            </tfoot>
-            <tbody>";
-            foreach ( $res_obj as $obj ){
-              $data_array = unserialize($obj->details);
-              echo "<tr class=\"item_{$obj->id}\">";
+              $header["action"] = __('Action',$this->td);
+              $header = array_unique($header);
+              echo "
+              <p><b>". sprintf(_n( "Your very first saved submition is showing below", "%s Saved Submission found", $total, $this->td ), $total) . "</b>   {$items_per_page_selceter}</p>
+              <table border=\"1\" id=\"exported_data\" class=\"exported_data\">
+              <thead>
+              <tr>";
               foreach ($header as $key => $value) {
-                switch ($key) {
-                  case '_sharp_id':
-                  $val = $obj->id;
-                  echo "<td class='item_{$key} itd_{$obj->id}'>{$val}</th>";
-                  break;
-                  case 'date_created':
-                  $val = "<p>". date_i18n( get_option('date_format'), strtotime($obj->date_created) ) . "</p><p>" . date_i18n( get_option('time_format'), strtotime($obj->date_created) )."</p>";
-                  echo "<td class='item_{$key} itd_{$obj->id}'>{$val}</th>";
-                  break;
-                  case 'your-email':
-                  $name = (isset($data_array['your-name'])?$data_array['your-name']:"");
-                  $email = (isset($data_array['your-email'])?$data_array['your-email']:"");
-                  $email = (isset($data_array['your-email'])?$data_array['your-email']:"");
-                  $val = "{$name}\r\n&lt;{$email}&gt;";
-                  echo "<td class='item_{$key} itd_{$obj->id}'>{$val}</th>";
-                  break;
-                  case 'action':
-                  $val = "<a href='javascript:;' title='".esc_attr__("Delete this specific submition", $this->td)."' class=\"button delete_item\" data-lid='{$obj->id}' ><span class='dashicons dashicons-trash'></span></a>
-                  <span class='spinner loading_{$obj->id}'></span>";
-                  echo "<td class='item_{$key} itd_{$obj->id}'>{$val}</th>";
-                  break;
-
-                  default:
-                  if (isset($data_array[$key])){
-                    $data = $data_array[$key];
-                  }else{
-                    $data = "";
-                  }
-                  if (is_array($data)){
-                    $data = implode(",\r\n", $data);
-                  }
-                  $val = esc_html($data);
-                  if (substr( $val, 0, strlen("FILEURL:") ) === "FILEURL:"){
-                    $val = substr($val, strlen("FILEURL:"));
-                    $name = pathinfo($val, PATHINFO_FILENAME);
-                    $val = "<a href='$val' target='_blank'>$name</a><span style='font-size:0;'> [$val]</span>";
-                  }
-                  echo "<td class='item_{$key} itd_{$obj->id}'><pre>{$val}</pre></th>";
-                  break;
+                $extraClass = "";
+                if (in_array($key, apply_filters( "pepro_cf7db_hide_col_from_export", array("action","_sharp_id")))){
+                  $extraClass = "noExport";
                 }
+                echo "<th class='th-{$key} $extraClass'>{$value}</th>";
               }
-              echo "</tr>";
+              echo "
+              </tr>
+              </thead>
+              <tfoot>
+              <tr>";
+              foreach ($header as $key => $value) {
+                $extraClass = "";
+                if (in_array($key, apply_filters( "pepro_cf7db_hide_col_from_export", array("action","_sharp_id")))){
+                  $extraClass = "noExport";
+                }
+                echo "<th class='th-{$key} $extraClass'>{$value}</th>";
+              }
+              echo "
+              </tr>
+              </tfoot>
+              <tbody>";
+              foreach ( $res_obj as $obj ){
+                $data_array = unserialize($obj->details);
+                echo "<tr class=\"item_{$obj->id}\">";
+                foreach ($header as $key => $value) {
+                  switch ($key) {
+                    case '_sharp_id':
+                    $val = $obj->id;
+                    echo "<td class='item_{$key} itd_{$obj->id}'>{$val}</th>";
+                    break;
+                    case 'date_created':
+                    $val = "<p>". date_i18n( get_option('date_format'), strtotime($obj->date_created) ) . "</p><p>" . date_i18n( get_option('time_format'), strtotime($obj->date_created) )."</p>";
+                    echo "<td class='item_{$key} itd_{$obj->id}'>{$val}</th>";
+                    break;
+                    case 'your-email':
+                    $name = (isset($data_array['your-name'])?$data_array['your-name']:"");
+                    $email = (isset($data_array['your-email'])?$data_array['your-email']:"");
+                    $email = (isset($data_array['your-email'])?$data_array['your-email']:"");
+                    $val = "{$name}\r\n&lt;{$email}&gt;";
+                    echo "<td class='item_{$key} itd_{$obj->id}'>{$val}</th>";
+                    break;
+                    case 'action':
+                    $val = "<a href='javascript:;' title='".esc_attr__("Delete this specific submition", $this->td)."' class=\"button delete_item\" data-lid='{$obj->id}' ><span class='dashicons dashicons-trash'></span></a>
+                    <span class='spinner loading_{$obj->id}'></span>";
+                    echo "<td class='item_{$key} itd_{$obj->id}'>{$val}</th>";
+                    break;
+
+                    default:
+                    if (isset($data_array[$key])){
+                      $data = $data_array[$key];
+                    }else{
+                      $data = "";
+                    }
+                    if (is_array($data)){
+                      $data = implode(",\r\n", $data);
+                    }
+                    $val = esc_html($data);
+                    if (substr( $val, 0, strlen("FILEURL:") ) === "FILEURL:"){
+                      $val = substr($val, strlen("FILEURL:"));
+                      $name = pathinfo($val, PATHINFO_FILENAME);
+                      $val = "<a href='$val' target='_blank'>$name</a><span style='font-size:0;'> [$val]</span>";
+                    }
+                    echo "<td class='item_{$key} itd_{$obj->id}'><pre>{$val}</pre></th>";
+                    break;
+                  }
+                }
+                echo "</tr>";
+              }
+              echo "</tbody>";
+              echo "</table>";
+              echo '<div class="pagination" style="margin-top: 1.5rem;display: block;">';
+              echo paginate_links(
+                array(
+                  'base' => add_query_arg('num', '%#%'),
+                  'format' => '',
+                  'show_all' => false,
+                  'mid_size' => 2,
+                  'end_size' => 2,
+                  'prev_text' => '<span class="button button-primary">' . __('< Previous',$this->td) . "</span>",
+                  'next_text' => '<span class="button button-primary">' . __('Next >',$this->td) . "</span>",
+                  'total' => ceil($total / $post_per_page),
+                  'current' => $page,
+                  'before_page_number' => '<span class="button">',
+                  'after_page_number' => "</span>",
+                  'type' => 'list'
+                )
+              );
+              echo "</div>";
             }
-            echo "</tbody>";
-            echo "</table>";
-            echo '<div class="pagination" style="margin-top: 1.5rem;display: block;">';
-            echo paginate_links(
-              array(
-                'base' => add_query_arg('num', '%#%'),
-                'format' => '',
-                'show_all' => false,
-                'mid_size' => 2,
-                'end_size' => 2,
-                'prev_text' => '<span class="button button-primary">' . __('< Previous',$this->td) . "</span>",
-                'next_text' => '<span class="button button-primary">' . __('Next >',$this->td) . "</span>",
-                'total' => ceil($total / $post_per_page),
-                'current' => $page,
-                'before_page_number' => '<span class="button">',
-                'after_page_number' => "</span>",
-                'type' => 'list'
-              )
-            );
-            echo "</div>";
-          }
-          ?>
-        </form>
+            ?>
+          </form>
+        </div>
       </div>
       <?php
       $tcona = ob_get_contents();
@@ -643,13 +629,11 @@ if (!class_exists("cf7Database")) {
   * @since   1.0.0
   * @license https://pepro.dev/license Pepro.dev License
   */
-  add_action(
-    "plugins_loaded", function () {
+  add_action( "plugins_loaded", function () {
       global $cf7Database;
       $cf7Database = new cf7Database;
       register_activation_hook(__FILE__, array("cf7Database", "activation_hook"));
-    }
-  );
+  });
 }
 /*##################################################
 Lead Developer: [amirhosseinhpv](https://hpv.im/)
