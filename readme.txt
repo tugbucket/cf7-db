@@ -3,8 +3,9 @@ Contributors: peprodev,amirhosseinhpv
 Donate link: https://pepro.dev/donate
 Tags: contact form 7, cf7, cf7 database, contact form 7 database, save cf7 files, save contact form 7 uploads
 Requires at least: 5.0
-Tested up to: 5.9.2
-Stable tag: 1.7.0
+Tested up to: 6.5.2
+Version: 1.8.0
+Stable tag: 1.8.0
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -76,24 +77,23 @@ You can help us improve our works by committing your changes to Pepro Dev's Gith
 
 == Changelog ==
 
+= 1.8.0 =
+- Fixed Security Issue
+
 
 = 1.7.0 =
-
 -   Some UI Fix
 
 = 1.6.0 =
-
 -   Enhanced file saving process
 -   Added force re-generate database link to plugin meta
 
 = 1.5.2 =
-
 -   In some hosting, database is not created
 -   Compatibility with Contact Form 7 version 5.5
 -   Added wp-admin/?force-cf7db to force re-generate database
 
 = 1.5.0 =
-
 -   Moved menu item under Cf7 Menu
 -   Added `pepro_cf7db_filter_header` hook and new filtering on column headers
 -   Enhanced Rendering CF7 Tag name as column header
@@ -105,29 +105,23 @@ You can help us improve our works by committing your changes to Pepro Dev's Gith
 -   Changed Plugin UI (somehow)
 
 = 1.4.0 =
-
 -   File Saving issue fixed with CF7 version 5.4 Beta
 
 = 1.3.0 =
-
 -   Small Fixes on showing item's date/time
 
 = 1.2.0 =
-
 -   Save Contact Form 7 Files ( Upload files to WP.Media )
 
 = 1.1.0 =
-
 -   CF7 Compatibility Fix
 -   WordPress 5.5 Compatible
 -   Now Read CF7 Tags Better, and Supports Radio, Checkbox, Select and Multiselect
 
 = 1.0.1 =
-
 -   Directory Index Blocked for resources
 
 = 1.0.0 =
-
 -   initial release
 
 
@@ -139,57 +133,6 @@ Join us at [https://pepro.dev/](https://pepro.dev/) and also don't forget to che
 
 == Upgrade Notice ==
 
-= 1.7.0 =
 
--   Some UI Fix
-
-
-= 1.6.0 =
-
--   Enhanced file saving process
--   Added force re-generate database link to plugin meta
-
-
-= 1.5.2 =
-
--   In some hosting, database is not created
--   Compatibility with Contact Form 7 version 5.5
--   Added wp-admin/?force-cf7db to force re-generate database
-
-= 🔥 Version 1.5.0 | 2021-05-19 - 1400/02/29 =
-
--   Moved menu item under Cf7 Menu
--   Added `pepro_cf7db_filter_header` hook and new filtering on column headers
--   Enhanced Rendering CF7 Tag name as column header
--   Added View Submition button in CF7 Form Edit panel
--   Added Extras metabox in CF7 Form Edit panel
--   Removed Setting page
--   Database and settings will not be removed on uninstalling
--   Manual Database Clearing is added
--   Changed Plugin UI (somehow)
-
-= 1.4.0 =
-
--   File Saving issue fixed with CF7 version 5.4 Beta
-
-= 1.3.0 =
-
--   Small Fixes on showing item's date/time
-
-= 1.2.0 =
-
--   Save Contact Form 7 Files ( Upload files to WP.Media )
-
-= 1.1.0 =
-
--   CF7 Compatibility Fix
--   WordPress 5.5 Compatible
--   Now Read CF7 Tags Better, and Supports Radio, Checkbox, Select and Multiselect
-
-= 1.0.1 =
-
--   Directory Index Blocked for resources
-
-= 1.0.0 =
-
--   initial release
+= 1.8.0 =
+- Fixed Security Issue

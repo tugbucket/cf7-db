@@ -9,10 +9,10 @@ Developer: Amirhosseinhpv
 Author URI: https://pepro.dev/
 Developer URI: https://hpv.im/
 Plugin URI: https://pepro.dev/cf7-database/
-Version: 1.7.0
-Stable tag: 1.7.0
+Version: 1.8.0
+Stable tag: 1.8.0
 Requires at least: 5.0
-Tested up to: 5.9.2
+Tested up to: 6.5.2
 Requires PHP: 5.6
 Text Domain: cf7db
 Domain Path: /languages
@@ -59,7 +59,7 @@ if (!class_exists("cf7Database")) {
       $this->plugin_basename = plugin_basename(__FILE__);
       $this->url             = admin_url("admin.php?page={$this->db_slug}");
       $this->plugin_file     = __FILE__;
-      $this->version         = "1.7.0";
+      $this->version         = "1.8.0";
       $this->deactivateURI   = null;
       $this->deactivateICON  = '<span style="font-size: larger; line-height: 1rem; display: inline; vertical-align: text-top;" class="dashicons dashicons-dismiss" aria-hidden="true"></span> ';
       $this->versionICON     = '<span style="font-size: larger; line-height: 1rem; display: inline; vertical-align: text-top;" class="dashicons dashicons-admin-plugins" aria-hidden="true"></span> ';
@@ -70,7 +70,7 @@ if (!class_exists("cf7Database")) {
       $this->title2          = __("Pepro CF7 Database", $this->td);
       $this->title_w         = sprintf(__("%2\$s ver. %1\$s", $this->td), $this->version, $this->title);
       add_action("init", array($this, 'init_plugin'));
-      if (isset($_GET["force-cf7db"])){
+      if (isset($_GET["force-cf7db"], $_GET["nonce"]) && current_user_can("manage_options") && wp_verify_nonce($_GET["nonce"], "cf7db") ){
         $this->CreateDatabase(1);
         wp_die("Database structure updated/regenerated.", $this->title, ["link_url"=> $this->url, "link_text"=> $this->title2, "back_link"=> true]);
       }
@@ -367,7 +367,7 @@ if (!class_exists("cf7Database")) {
             </p>
             <p>
               <a class='dt-button hrefbtn' id='emptyDbNow' title='".esc_attr__("BE CAUTIOUS! ONCE YOU EMPTY THE DATABASE, THERE WILL BE NO WAY BACK!", $this->td)."' href='javascript:;'>"._x("Empty Database and All Saved Submission", "setting-general", $this->td)."</a>
-              <a class='dt-button hrefbtn' target='_self' href='".admin_url("?force-cf7db")."'>".__("Force Re-generate Database", $this->td)."</a>
+              <a class='dt-button hrefbtn' target='_self' href='".admin_url("?force-cf7db=yes&nonce=".wp_create_nonce($this->td))."'>".__("Force Re-generate Database", $this->td)."</a>
             </p>
         </div>
         <div class='notice notice-info'><p>".__("To view Saved Submission, select a CF7 Form from below list:",$this->td)."</p><p>$select</p></div>";
