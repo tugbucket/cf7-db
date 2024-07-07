@@ -7,10 +7,24 @@ Tags: contact form 7, cf7 database, contact form 7 database, save cf7 files, sav
 Author: Pepro Dev. Group
 Author URI: https://pepro.dev/
 Plugin URI: https://pepro.dev/cf7-database/
+<<<<<<< Updated upstream
 Version: 1.9.0
 Stable tag: 1.9.0
 Requires at least: 5.0
 Tested up to: 6.5.2
+=======
+<<<<<<< HEAD
+Version: 1.8.0
+Stable tag: 1.8.0
+Requires at least: 5.0
+Tested up to: 6.2
+=======
+Version: 1.9.0
+Stable tag: 1.9.0
+Requires at least: 5.0
+Tested up to: 6.5.2
+>>>>>>> 279a39246ca58bb0d75eff820eae9463be71f483
+>>>>>>> Stashed changes
 Requires PHP: 5.6
 Text Domain: cf7db
 Domain Path: /languages
@@ -43,12 +57,30 @@ if (!class_exists("cf7Database")) {
       $this->assets_url      = plugins_url("/assets/", __FILE__);
       $this->plugin_basename = plugin_basename(__FILE__);
       $this->url             = admin_url("admin.php?page={$this->db_slug}");
+<<<<<<< Updated upstream
       $this->version         = "1.9.0";
       $this->title           = __("CF7 Database", $this->td);
       $this->title2          = __("Pepro CF7 Database", $this->td);
       $this->title_w         = sprintf(__("%2\$s ver. %1\$s", $this->td), $this->version, $this->title);
       add_action("init", array($this, "init_plugin"));
       if (isset($_GET["force-cf7db"], $_GET["nonce"]) && current_user_can("manage_options") && wp_verify_nonce($_GET["nonce"], "cf7db") ){
+=======
+<<<<<<< HEAD
+      $this->version         = "1.7.0";
+      $this->title           = __("CF7 Database", $this->td);
+      $this->title2          = __("Pepro CF7 Database", $this->td);
+      $this->title_w         = sprintf(__("%2\$s ver. %1\$s", $this->td), $this->version, $this->title);
+      add_action("init", array($this, 'init_plugin'));
+      if (isset($_GET["force-cf7db"]) && is_blog_admin() && current_user_can("administrator")) {
+=======
+      $this->version         = "1.9.0";
+      $this->title           = __("CF7 Database", $this->td);
+      $this->title2          = __("Pepro CF7 Database", $this->td);
+      $this->title_w         = sprintf(__("%2\$s ver. %1\$s", $this->td), $this->version, $this->title);
+      add_action("init", array($this, "init_plugin"));
+      if (isset($_GET["force-cf7db"], $_GET["nonce"]) && current_user_can("manage_options") && wp_verify_nonce($_GET["nonce"], "cf7db") ){
+>>>>>>> 279a39246ca58bb0d75eff820eae9463be71f483
+>>>>>>> Stashed changes
         $this->CreateDatabase(1);
         wp_die("Database structure updated/regenerated.", $this->title, ["link_url" => $this->url, "link_text" => $this->title2, "back_link" => true]);
       }
@@ -60,7 +92,15 @@ if (!class_exists("cf7Database")) {
       add_action("admin_menu"                                  , array($this, "admin_menu"));
       add_action("admin_enqueue_scripts"                       , array($this, "admin_enqueue_scripts"));
       add_action("wpcf7_admin_footer"                          , array($this, "wpcf7_admin_footer"));
+<<<<<<< Updated upstream
       add_action("wpcf7_before_send_mail"                      , array($this, "cf7_before_send_mail_hook"));
+=======
+<<<<<<< HEAD
+      add_action("wpcf7_before_send_mail"                      ,  array($this, "cf7_before_send_mail_hook"));
+=======
+      add_action("wpcf7_before_send_mail"                      , array($this, "cf7_before_send_mail_hook"));
+>>>>>>> 279a39246ca58bb0d75eff820eae9463be71f483
+>>>>>>> Stashed changes
       add_action("wp_ajax_nopriv_cf7db_{$this->td}"            , array($this, "handel_ajax_req"));
       add_action("wp_ajax_cf7db_{$this->td}"                   , array($this, "handel_ajax_req"));
     }
@@ -335,7 +375,15 @@ if (!class_exists("cf7Database")) {
             </p>
             <p>
               <a class='dt-button hrefbtn' id='emptyDbNow' title='" . esc_attr__("BE CAUTIOUS! ONCE YOU EMPTY THE DATABASE, THERE WILL BE NO WAY BACK!", $this->td) . "' href='javascript:;'>" . _x("Empty Database and All Saved Submission", "setting-general", $this->td) . "</a>
+<<<<<<< Updated upstream
               <a class='dt-button hrefbtn' target='_self' href='" . admin_url("?force-cf7db=yes&nonce=".wp_create_nonce($this->td)) . "'>" . __("Force Re-generate Database", $this->td) . "</a>
+=======
+<<<<<<< HEAD
+              <a class='dt-button hrefbtn' target='_self' href='" . admin_url("?force-cf7db") . "'>" . __("Force Re-generate Database", $this->td) . "</a>
+=======
+              <a class='dt-button hrefbtn' target='_self' href='" . admin_url("?force-cf7db=yes&nonce=".wp_create_nonce($this->td)) . "'>" . __("Force Re-generate Database", $this->td) . "</a>
+>>>>>>> 279a39246ca58bb0d75eff820eae9463be71f483
+>>>>>>> Stashed changes
             </p>
         </div>
         <div class='notice notice-info'><p>" . __("To view Saved Submission, select a CF7 Form from below list:", $this->td) . "</p><p>$select</p></div>";
