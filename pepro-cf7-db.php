@@ -1,30 +1,16 @@
 <?php
 /*
 Plugin Name: PeproDev CF7 Database
-Description: Reliable Solution to Save CF7 Submissions and Files, Works with CF7 v.5.5+
+Description: Reliable Solution to Save CF7 Submissions and Files, Works with CF7 v5.9+
 Contributors: amirhpcom, blackswanlab, peprodev
-Tags: contact form 7, cf7 database, contact form 7 database, save cf7 files, save contact form 7 uploads
+Tags: contact form 7 database, cf7 files, save contact form 7 uploads
 Author: Pepro Dev. Group
 Author URI: https://pepro.dev/
 Plugin URI: https://pepro.dev/cf7-database/
-<<<<<<< Updated upstream
-Version: 1.9.0
-Stable tag: 1.9.0
+Version: 2.0.0
+Stable tag: 2.0.0
 Requires at least: 5.0
-Tested up to: 6.5.2
-=======
-<<<<<<< HEAD
-Version: 1.8.0
-Stable tag: 1.8.0
-Requires at least: 5.0
-Tested up to: 6.2
-=======
-Version: 1.9.0
-Stable tag: 1.9.0
-Requires at least: 5.0
-Tested up to: 6.5.2
->>>>>>> 279a39246ca58bb0d75eff820eae9463be71f483
->>>>>>> Stashed changes
+Tested up to: 6.6.2
 Requires PHP: 5.6
 Text Domain: cf7db
 Domain Path: /languages
@@ -32,75 +18,56 @@ Copyright: (c) Pepro Dev. Group, All rights reserved.
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * @Last modified by: amirhp-com <its@amirhp.com>
- * @Last modified time: 2023/08/01 02:24:05
+ * @Last modified time: 2024/09/29 15:03:21
  */
 
 defined("ABSPATH") or die("Pepro CF7 Database :: Unauthorized Access!");
 
 if (!class_exists("cf7Database")) {
   class cf7Database {
-    public $td;
     public $url;
-    public $version;
+    public $td = "cf7db";
+    public $db_slug = "cf7db";
+    public $version = "2.0.0";
+		public $db_version = "2.0.0";
     public $title;
     public $title_w;
-    public $db_slug;
     private $assets_url;
     private $plugin_basename;
     private $title2;
     private $db_table = null;
     public function __construct() {
       global $wpdb;
-      $this->td              = "cf7db";
-      $this->db_slug         = $this->td;
-      $this->db_table        = $wpdb->prefix . $this->db_slug;
-      $this->assets_url      = plugins_url("/assets/", __FILE__);
+      $this->db_table = $wpdb->prefix . $this->db_slug;
+      $this->assets_url = plugins_url("/assets/", __FILE__);
       $this->plugin_basename = plugin_basename(__FILE__);
-      $this->url             = admin_url("admin.php?page={$this->db_slug}");
-<<<<<<< Updated upstream
-      $this->version         = "1.9.0";
-      $this->title           = __("CF7 Database", $this->td);
-      $this->title2          = __("Pepro CF7 Database", $this->td);
-      $this->title_w         = sprintf(__("%2\$s ver. %1\$s", $this->td), $this->version, $this->title);
+      $this->url = admin_url("admin.php?page={$this->db_slug}");
+      $this->title = __("CF7 Database", $this->td);
+      $this->title2 = __("Pepro CF7 Database", $this->td);
+      $this->title_w = sprintf(__("%2\$s ver. %1\$s", $this->td), $this->version, $this->title);
+      
       add_action("init", array($this, "init_plugin"));
+      
       if (isset($_GET["force-cf7db"], $_GET["nonce"]) && current_user_can("manage_options") && wp_verify_nonce($_GET["nonce"], "cf7db") ){
-=======
-<<<<<<< HEAD
-      $this->version         = "1.7.0";
-      $this->title           = __("CF7 Database", $this->td);
-      $this->title2          = __("Pepro CF7 Database", $this->td);
-      $this->title_w         = sprintf(__("%2\$s ver. %1\$s", $this->td), $this->version, $this->title);
-      add_action("init", array($this, 'init_plugin'));
-      if (isset($_GET["force-cf7db"]) && is_blog_admin() && current_user_can("administrator")) {
-=======
-      $this->version         = "1.9.0";
-      $this->title           = __("CF7 Database", $this->td);
-      $this->title2          = __("Pepro CF7 Database", $this->td);
-      $this->title_w         = sprintf(__("%2\$s ver. %1\$s", $this->td), $this->version, $this->title);
-      add_action("init", array($this, "init_plugin"));
-      if (isset($_GET["force-cf7db"], $_GET["nonce"]) && current_user_can("manage_options") && wp_verify_nonce($_GET["nonce"], "cf7db") ){
->>>>>>> 279a39246ca58bb0d75eff820eae9463be71f483
->>>>>>> Stashed changes
-        $this->CreateDatabase(1);
+        $this->CreateDatabase(true);
         wp_die("Database structure updated/regenerated.", $this->title, ["link_url" => $this->url, "link_text" => $this->title2, "back_link" => true]);
       }
-      $this->CreateDatabase();
+      
     }
     public function init_plugin() {
       load_plugin_textdomain("cf7db", false, dirname(plugin_basename(__FILE__)) . "/languages/");
+      
+      $cur_version = get_option("cf7db_cur_db_version", "1.0.0");
+      if (version_compare($cur_version, $this->db_version, "<")) {
+        $this->CreateDatabase(true);
+        update_option("cf7db_cur_db_version", $this->db_version);
+      }
+
       add_filter("plugin_action_links_{$this->plugin_basename}", array($this, 'plugins_row_links'));
       add_action("admin_menu"                                  , array($this, "admin_menu"));
       add_action("admin_enqueue_scripts"                       , array($this, "admin_enqueue_scripts"));
       add_action("wpcf7_admin_footer"                          , array($this, "wpcf7_admin_footer"));
-<<<<<<< Updated upstream
-      add_action("wpcf7_before_send_mail"                      , array($this, "cf7_before_send_mail_hook"));
-=======
-<<<<<<< HEAD
-      add_action("wpcf7_before_send_mail"                      ,  array($this, "cf7_before_send_mail_hook"));
-=======
-      add_action("wpcf7_before_send_mail"                      , array($this, "cf7_before_send_mail_hook"));
->>>>>>> 279a39246ca58bb0d75eff820eae9463be71f483
->>>>>>> Stashed changes
+      add_action("wpcf7_before_send_mail"                      , array($this, "cf7_before_send_mail_hook"), 10, 3);
       add_action("wp_ajax_nopriv_cf7db_{$this->td}"            , array($this, "handel_ajax_req"));
       add_action("wp_ajax_cf7db_{$this->td}"                   , array($this, "handel_ajax_req"));
     }
@@ -126,24 +93,24 @@ if (!class_exists("cf7Database")) {
       document.getElementById('minor-publishing-actions').appendChild(document.getElementById('viewsavedsubmission'));</script>
       ";
     }
-    public function cf7_before_send_mail_hook($form_to_DBs) {
+    public function cf7_before_send_mail_hook($contact_form, $abort, $form_to_DB) {
       $form_to_DB = \WPCF7_Submission::get_instance();
       if ($form_to_DB) {
         $formData = $form_to_DB->get_posted_data();
         $contact_form = \WPCF7_ContactForm::get_current();
         $contact_form_id = $contact_form->id();
-        if ($uploaded_files = $form_to_DB->uploaded_files()) {
+        $uploaded_files = $form_to_DB->uploaded_files();
+        if ($uploaded_files) {
           foreach ($uploaded_files as $fieldName => $filepath) {
             $data = $this->save_cf7_attachment($filepath, $fieldName, $contact_form_id);
             $formData[$fieldName] = "FILEURL:$data";
           }
         }
-        $subject    = isset($formData["your-subject"]) ? $formData["your-subject"] : "";
-        $name       = isset($formData["your-name"]) ? $formData["your-name"] : "";
-        $email      = isset($formData["your-email"]) ? $formData["your-email"] : "";
-        $details    = serialize($formData);
-        $extra_info = $form_to_DBs->id();
-        $this->save_cf7_submission($subject, $name, $email, $details, $extra_info);
+        $subject = isset($formData["your-subject"]) ? $formData["your-subject"] : "";
+        $name    = isset($formData["your-name"]) ? $formData["your-name"] : "";
+        $email   = isset($formData["your-email"]) ? $formData["your-email"] : "";
+        $details = serialize($formData);
+        $this->save_cf7_submission($subject, $name, $email, $details, $contact_form_id);
       }
     }
     protected function save_cf7_attachment($filename, $fieldName, $postID) {
@@ -375,15 +342,7 @@ if (!class_exists("cf7Database")) {
             </p>
             <p>
               <a class='dt-button hrefbtn' id='emptyDbNow' title='" . esc_attr__("BE CAUTIOUS! ONCE YOU EMPTY THE DATABASE, THERE WILL BE NO WAY BACK!", $this->td) . "' href='javascript:;'>" . _x("Empty Database and All Saved Submission", "setting-general", $this->td) . "</a>
-<<<<<<< Updated upstream
               <a class='dt-button hrefbtn' target='_self' href='" . admin_url("?force-cf7db=yes&nonce=".wp_create_nonce($this->td)) . "'>" . __("Force Re-generate Database", $this->td) . "</a>
-=======
-<<<<<<< HEAD
-              <a class='dt-button hrefbtn' target='_self' href='" . admin_url("?force-cf7db") . "'>" . __("Force Re-generate Database", $this->td) . "</a>
-=======
-              <a class='dt-button hrefbtn' target='_self' href='" . admin_url("?force-cf7db=yes&nonce=".wp_create_nonce($this->td)) . "'>" . __("Force Re-generate Database", $this->td) . "</a>
->>>>>>> 279a39246ca58bb0d75eff820eae9463be71f483
->>>>>>> Stashed changes
             </p>
         </div>
         <div class='notice notice-info'><p>" . __("To view Saved Submission, select a CF7 Form from below list:", $this->td) . "</p><p>$select</p></div>";
@@ -457,7 +416,8 @@ if (!class_exists("cf7Database")) {
                 "date_created"  =>  __('Date Created', $this->td),
               );
               foreach ($res_obj as $obj) {
-                $data_array = unserialize($obj->details);
+                $data_array = maybe_unserialize($obj->details);
+                if (!$data_array || !is_array($data_array)) { continue; }
                 if (isset($data_array["your-email"]) && isset($data_array["your-name"])) {
                   unset($data_array["your-name"]);
                   unset($data_array["your-email"]);
@@ -610,7 +570,7 @@ if (!class_exists("cf7Database")) {
         "from"       => esc_html(sanitize_text_field(wp_strip_all_tags($from))),
         "subject"    => esc_html(sanitize_text_field(wp_strip_all_tags($subject))),
         "email"      => esc_html(sanitize_text_field(wp_strip_all_tags($email))),
-        "details"    => esc_html(sanitize_textarea_field(wp_strip_all_tags($details))),
+        "details"    => $details,
         "extra_info" => esc_html(sanitize_textarea_field(wp_strip_all_tags($extra_info))),
       ), '%s');
       return $inserted;
