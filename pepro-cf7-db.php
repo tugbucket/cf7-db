@@ -240,7 +240,8 @@ if (!class_exists("cf7Database")) {
       add_submenu_page("wpcf7", $this->title_w, $this->title, "manage_options", $this->db_slug, array($this, 'db_container'));
     }
     public function localize_script($the_title) {
-      $currentTimestamp = current_time("timestamp");
+      //$currentTimestamp = current_time("timestamp");
+	  $currentTimestamp = get_option('timezone_string');
       $currentDate = date_i18n(get_option('date_format'), $currentTimestamp);
       $currentTime = date_i18n(get_option('time_format'), $currentTimestamp);
       return array(
@@ -414,6 +415,7 @@ if (!class_exists("cf7Database")) {
               $header = array(
                 "_sharp_id"            =>  __('ID', $this->td),
                 "date_created"  =>  __('Date Created', $this->td),
+				"time_created"  =>  __('Time Created', $this->td),
               );
               foreach ($res_obj as $obj) {
                 $data_array = maybe_unserialize($obj->details);
@@ -483,8 +485,12 @@ if (!class_exists("cf7Database")) {
                       echo "<td class='item_{$key} itd_{$obj->id}'>{$val}</th>";
                       break;
                     case 'date_created':
-                      $val = "<p>" . date_i18n(get_option('date_format'), strtotime($obj->date_created)) . "</p><p>" . date_i18n(get_option('time_format'), strtotime($obj->date_created)) . "</p>";
+                      $val = "<p>" . date_i18n(get_option('date_format'), strtotime($obj->date_created)) . "</p>";
                       echo "<td class='item_{$key} itd_{$obj->id}'>{$val}</th>";
+                      break;
+                    case 'time_created':
+					    $val_time = "<p>" . date_i18n(get_option('time_format'), strtotime($obj->date_created)) . "</p>";
+					  echo "<td class='item_{$key} itd_{$obj->id}'>{$val_time}</th>";
                       break;
                     case 'your-email':
                       $name = (isset($data_array['your-name']) ? $data_array['your-name'] : "");
